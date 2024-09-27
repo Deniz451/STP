@@ -8,12 +8,8 @@ using UnityEngine.Animations.Rigging;
 public class InsectSetupTool : EditorWindow
 {
     GameObject model;
-    List<GameObject> legBoneRoot;
-    List<GameObject> legBoneEnd;
-
+    private Dictionary<GameObject, GameObject> legBones = new Dictionary<GameObject, GameObject>();
     string savePath = "Assets/Prefabs/";
-
-    // Adjustable values for window
     string[] navMeshAgentTypes;
     int selectedNavMeshAgentIndex = 0;
     float navMeshAgentBaseOffset = 0;
@@ -21,6 +17,8 @@ public class InsectSetupTool : EditorWindow
     float legCurveHeight = 0;
     float legSpeedFactor = 0;
     string prefabName;
+    bool saveAsPrefab = false;
+
 
     [MenuItem("Tools/Model Setup Tool")]
     public static void ShowWindow()
@@ -35,6 +33,7 @@ public class InsectSetupTool : EditorWindow
 
     void OnGUI()
     {
+        EditorGUILayout.HelpBox("The first bone of each leg has to be named in format L/R_1-n, depending on which side it is on and its position from the head to the end of the model. Gameobject that you are trying to set up has to have a child named \"Armature\", that contains all of the bones.", MessageType.Info);
         GUILayout.Space(20);
 
         GUILayout.Label("Model", EditorStyles.boldLabel);
@@ -56,6 +55,7 @@ public class InsectSetupTool : EditorWindow
         GUILayout.Space(20);
 
         GUILayout.Label("Prefab Settings", EditorStyles.boldLabel);
+        saveAsPrefab = EditorGUILayout.Toggle("Save As Prefab", saveAsPrefab);
         prefabName = EditorGUILayout.TextField("Prefab Name", prefabName);
         if (GUILayout.Button("Select Save Path"))
         {
@@ -97,8 +97,6 @@ public class InsectSetupTool : EditorWindow
 
     void SetupInsectModel(GameObject model)
     {
-        legBoneRoot = new List<GameObject>();
-        legBoneEnd = new List<GameObject>();
 
         AplyBoneRenderer();
         AplyRigSetup();
@@ -114,39 +112,55 @@ public class InsectSetupTool : EditorWindow
 
         AssignVariables();
 
-        SavePrefab(model);
+        if (saveAsPrefab) SavePrefab(model);
     }
 
     private void FindRootBones(GameObject objectToIterate)
     {
-
-        // Itirate through all armature children
+        // Iterate through all armature children
         for (int i = 0; i < objectToIterate.transform.childCount; i++)
         {
-            // If the first char of the child is L or R, child must be root bone, therefor add to list
             GameObject child = objectToIterate.transform.GetChild(i).gameObject;
             char[] charArr = child.name.ToCharArray();
+
+            // If the first char of the child is 'L' or 'R', it is a root bone
             if (charArr[0] == 'L' || charArr[0] == 'R')
             {
-                legBoneRoot.Add(child);
-                // If we found the root bone, find its end bone
-                string targetName = child.name.Replace("root", "end");
-                FindEndBones(child, targetName);
+                // Add the root bone to the dictionary and try to find the end bone
+                GameObject endBone = FindEndBones(child);
+
+                // Add both root and end bone to the dictionary if the end bone is found
+                if (endBone != null)
+                {
+                    legBones.Add(child, endBone);
+                }
             }
-            // Else if the child doesn have L or R as first char and has children, iterate through its children
-            else if (child.transform.childCount > 0) FindRootBones(child);
+            // If not root, check its children recursively
+            else if (child.transform.childCount > 0)
+            {
+                FindRootBones(child);
+            }
         }
     }
 
-    // Itirates throgu all the children of the target gameobject and compares them to target name
-    private void FindEndBones(GameObject objectToIterate, string targetName)
+    private GameObject FindEndBones(GameObject objectToIterate)
     {
+        // Check the first child of the object to see if it's an end bone
         GameObject child = objectToIterate.transform.GetChild(0).gameObject;
-        if (child.name == targetName)
+
+        // If the child contains "end" in its name, return it as the end bone
+        if (child.name.Contains("end"))
         {
-            legBoneEnd.Add(child);
+            return child;
         }
-        else if (child.transform.childCount > 0) FindEndBones(child, targetName);
+        // Otherwise, continue searching recursively if there are more children
+        else if (child.transform.childCount > 0)
+        {
+            return FindEndBones(child);
+        }
+
+        // Return null if no end bone is found
+        return null;
     }
 
     private void AplyRigSetup()
@@ -157,7 +171,6 @@ public class InsectSetupTool : EditorWindow
         rigObject.transform.position = Vector3.zero;
         model.transform.AddComponent<RigBuilder>();
         RigBuilder rigBuilder = model.GetComponent<RigBuilder>();
-        // add rig to ribuilder
         rigBuilder.layers.Add(new RigLayer(rigComponent));
         rigBuilder.Build();
     }
@@ -173,46 +186,35 @@ public class InsectSetupTool : EditorWindow
         raycasts.transform.parent = model.transform;
         raycasts.transform.position = Vector3.zero;
 
-        // Creating individual raycast points depending on end bone position
-        foreach (GameObject bone in legBoneEnd)
+        foreach (GameObject key in legBones.Keys)
         {
-            // Creating the name for the controller
-            string raycastName = bone.name.Replace("_end", string.Empty);
-            // Creating gameobject
+            string raycastName = key.name.Replace("_root", string.Empty);
             GameObject raycast = new(raycastName);
             raycast.transform.parent = raycasts.transform;
-            raycast.transform.position = new Vector3(bone.transform.position.x, 3, bone.transform.position.z);
+            raycast.transform.position = new Vector3(legBones[key].transform.position.x, 3, legBones[key].transform.position.z);
         }
     }
 
     private void CreateLegControllers()
     {
-        // Finding the Rig gameobject
         GameObject rig = model.transform.Find("Rig").gameObject;
-        // Itirating through each end bone and making a controller for it
-        foreach (GameObject bone in legBoneEnd)
+
+        foreach (GameObject key in legBones.Keys)
         {
-            // Creating the name for the controller
-            string controllerName = bone.name.Replace("_end", string.Empty);
-            // Creating gameobject
+            string controllerName = key.name.Replace("_root", string.Empty);
             GameObject controller = new(controllerName);
-            // Assigning parent to teh controller
             controller.transform.parent = rig.transform;
-            // Assigning position to the controller equal to the position of the current end bone
             controller.transform.position = model.transform.position;
-            // Adding the Chain IK Constraint to the gameobject
             controller.AddComponent<ChainIKConstraint>();
             ChainIKConstraint chainIKConstraint = controller.GetComponent<ChainIKConstraint>();
-            // Assigning the root bone to the Chain IK Constraint
-            foreach(GameObject rootBone in legBoneRoot) if (rootBone.name.Replace("root", "end") == bone.name) chainIKConstraint.data.root = rootBone.transform;
-            // Assigning the tip bone to the Chain IK Constraint
-            chainIKConstraint.data.tip = bone.transform;
-            // Assigning the target to the Chain IK Constraint
+            chainIKConstraint.data.root = key.transform;
+            chainIKConstraint.data.tip = legBones[key].transform;
+
             GameObject target = new(controllerName + "_target");
             target.transform.parent = controller.transform;
-            target.transform.position = bone.transform.position;
+            target.transform.position = legBones[key].transform.position;
             chainIKConstraint.data.target = target.transform;
-            // Adding IKController script
+
             controller.AddComponent<IKController>();
             controller.GetComponent<IKController>().target = target.transform;
             controller.GetComponent<IKController>().raycast = model.transform.Find("Raycasts").transform.Find(controllerName);
