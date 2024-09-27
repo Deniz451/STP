@@ -3,20 +3,23 @@ using UnityEngine;
 public class IKController : MonoBehaviour
 {
     [Header("Leg Settings")]
-    [SerializeField] private Transform target; // the target gameobject that the last bone of the leg follows
-    [SerializeField] private Transform raycast; // the point from where the raycast is shot to determine the position of the target position
-    [SerializeField] private float distanceCap; // the distance at which the leg moves
-    [SerializeField] private float curveHeight; // how high the leg moves
-    [SerializeField] private float speedFactor; // speed factor of the individual leg
-    private bool isOnGround = true;
-    private float t = 0f;
+    public float distanceCap; // the distance at which the leg moves
+    public float curveHeight; // how high the leg moves
+    public float speedFactor; // speed factor of the individual leg
+    public Transform target; // the target gameobject that the last bone of the leg follows
+    public Transform raycast; // the point from where the raycast is shot to determine the position of the target position
+
     private Vector3 targetPos; // position on the ground the leg should stick to
     private Vector3 raycastHitPos; // the position where raycast hit the ground and the leg should move to
+    private bool isOnGround = true;
+    private float t = 0f;
+
 
     [Header("Gizmo Settings")]
-    [SerializeField] private bool raycastLine;
-    [SerializeField] private bool raycastHitPoint;
-    [SerializeField] private bool lockOnPosition;
+    [SerializeField] private bool raycastLine = true;
+    [SerializeField] private bool raycastHitPoint = true;
+    [SerializeField] private bool lockOnPosition = true;
+
 
 
     private void Start()

@@ -5,10 +5,10 @@ using UnityEngine.AI;
 public class Movement : MonoBehaviour
 {
 
-    [Header("Body Height Settings")]
-    [SerializeField] private float smoothingSpeed = 10f; // how fast the body moves to new y position
+    /*[Header("Body Height Settings")]
+    [SerializeField] private float smoothingSpeed = 10f; // how fast the body moves to new y position*/
 
-    [Header("Body Rotation Settings")]
+    /*[Header("Body Rotation Settings")]
     [SerializeField] private Transform left;
     [SerializeField] private Transform right;
     [SerializeField] private bool rotateBody;
@@ -18,15 +18,15 @@ public class Movement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private Transform[] Points;
     [SerializeField] private bool followPath;
-    private int pointIndex;
+    private int pointIndex;*/
 
     // Settings for the navmesh, picking random location
     [Header("Navmesh Settings")]
-    [SerializeField] private float patrolRadius;
-    [SerializeField] private float waitTime;
-    [SerializeField] private NavMeshAgent agent;
-    private Vector3 currentDestination;
+    [SerializeField] private float patrolRadius = 30;
+    [SerializeField] private float waitTime = 2;
+    public NavMeshAgent agent;
     private bool isWaiting = false;
+    private Vector3 currentDestination;
 
 
 
@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour
         Vector3 newPosition = new Vector3(transform.position.x, Mathf.Lerp(transform.position.y, targetHeight, Time.deltaTime * smoothingSpeed), transform.position.z);
         if (Mathf.Abs(newPosition.y - transform.position.y) > heightChangeThreshold) transform.position = newPosition;*/
 
-        if (rotateBody) RotateBody();
+        /*if (rotateBody) RotateBody();
 
         if (pointIndex < Points.Length && Points.Length != 0 && followPath)
         {
@@ -53,7 +53,7 @@ public class Movement : MonoBehaviour
                 if (Vector3.Distance(transform.position, Points[pointIndex].position) <= 0.1) pointIndex++;
 
             }
-        }
+        }*/
     }
 
 
@@ -69,7 +69,7 @@ public class Movement : MonoBehaviour
         //transform.rotation = Quaternion.Euler(Mathf.Atan((left.position.y - right.position.y) / Vector3.Distance(left.position, right.position)) * Mathf.Rad2Deg, 270, 0);
 
         // VERSION 2
-        Vector3 legDirection = right.position - left.position;
+        /*Vector3 legDirection = right.position - left.position;
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit))
@@ -77,7 +77,7 @@ public class Movement : MonoBehaviour
             Vector3 surfaceNormal = hit.normal;
             Quaternion targetRotation = Quaternion.FromToRotation(transform.up, surfaceNormal) * transform.rotation;
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * smoothingSpeed);
-        }
+        }*/
 
         // VERSION 3
         /*Vector3 pointA = legs[0].transform.position;
