@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FollowSpider : MonoBehaviour
+public class CameraFollowObject : MonoBehaviour
 {
 
     [SerializeField] private Transform spider;

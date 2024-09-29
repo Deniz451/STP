@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations.Rigging;
 
-public class InsectSetupTool : EditorWindow
+public class ModelSetupTool : EditorWindow
 {
     GameObject model;
     private Dictionary<GameObject, GameObject> legBones = new Dictionary<GameObject, GameObject>();
@@ -14,7 +14,7 @@ public class InsectSetupTool : EditorWindow
     int selectedNavMeshAgentIndex = 0;
     float navMeshAgentBaseOffset = 0;
     float legDistanceCap = 0;
-    float legCurveHeight = 0;
+    AnimationCurve legCurve;
     float legSpeedFactor = 0;
     string prefabName;
     bool saveAsPrefab = false;
@@ -23,7 +23,7 @@ public class InsectSetupTool : EditorWindow
     [MenuItem("Tools/Model Setup Tool")]
     public static void ShowWindow()
     {
-        GetWindow<InsectSetupTool>("Model Setup Tool");
+        GetWindow<ModelSetupTool>("Model Setup Tool");
     }
 
     void OnEnable()
@@ -48,8 +48,8 @@ public class InsectSetupTool : EditorWindow
         GUILayout.Space(20);
 
         GUILayout.Label("Animation Settings", EditorStyles.boldLabel);
+        legCurve =  EditorGUILayout.CurveField("Leg Curve", legCurve);
         legDistanceCap =  EditorGUILayout.FloatField("Leg Distance Cap", legDistanceCap);
-        legCurveHeight =  EditorGUILayout.FloatField("Leg Curve Height", legCurveHeight);
         legSpeedFactor =  EditorGUILayout.FloatField("Leg Speed Factor", legSpeedFactor);
 
         GUILayout.Space(20);
@@ -106,9 +106,6 @@ public class InsectSetupTool : EditorWindow
 
         CreateRaycasts();
         CreateLegControllers();
-
-        model.AddComponent<NavMeshAgent>();
-        model.AddComponent<Movement>();
 
         AssignVariables();
 
@@ -233,7 +230,7 @@ public class InsectSetupTool : EditorWindow
             GameObject child = rig.transform.GetChild(i).gameObject;
             IKController ikController = child.GetComponent<IKController>();
             ikController.distanceCap = legDistanceCap;
-            ikController.curveHeight = legCurveHeight;
+            ikController.legMovementCurve = legCurve;
             ikController.speedFactor = legSpeedFactor;
         }
     }
