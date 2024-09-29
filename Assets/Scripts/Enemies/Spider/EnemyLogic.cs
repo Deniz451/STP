@@ -14,24 +14,20 @@ public class EnemyLogic : MonoBehaviour
     {
         Unassigned,
         Chasing,
-        MeleeAttack,
-        RangeAttack,
+        Attack,
         Death
     }
     [SerializeField] private States currentStates = States.Unassigned;
     private States lastState = States.Unassigned;
     private Transform player;
+    private bool isAttacking;
 
     // enemy scripts
     private EnemyMovement enemyMovement;
     private EnemyAttack enemyAttack;
 
-    // inspector settings
-    [SerializeField] private float rangeAttackDistance;
-    [SerializeField] private float meleeAttackDistance;
 
-
-
+    // finds variables and triggers spawn function
     private void Start()
     {
         enemyMovement = GetComponent<EnemyMovement>();
@@ -40,9 +36,10 @@ public class EnemyLogic : MonoBehaviour
         Spawn();
     }
 
+    // checks for state change condition and if last state doesn equal to current state triggers new action
     private void Update()
     {
-        CheckForStates();
+        if (!isAttacking) CheckForStates();
 
         if (lastState != currentStates)
         {
@@ -53,18 +50,13 @@ public class EnemyLogic : MonoBehaviour
 
     private void CheckForStates()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) > rangeAttackDistance)
+        if (Vector3.Distance(transform.position, player.transform.position) > enemyAttack.attackDistance)
         {
             currentStates = States.Chasing;
         }
-        // must be before checking for the larger distance
-        else if (Vector3.Distance(transform.position, player.transform.position) <= meleeAttackDistance)
+        else if (Vector3.Distance(transform.position, player.transform.position) <= enemyAttack.attackDistance)
         {
-            currentStates = States.MeleeAttack;
-        }
-        else if (Vector3.Distance(transform.position, player.transform.position) <= rangeAttackDistance)
-        {
-            currentStates = States.RangeAttack;
+            currentStates = States.Attack;
         }
     }
 
@@ -75,11 +67,8 @@ public class EnemyLogic : MonoBehaviour
             case States.Chasing:
                 Chase();
                 break;
-            case States.MeleeAttack:
-                MeleeAtack();
-                break;
-            case States.RangeAttack:
-                RangeAttack();
+            case States.Attack:
+                Attack();
                 break;
             case States.Death:
                 Death();
@@ -98,14 +87,10 @@ public class EnemyLogic : MonoBehaviour
         enemyMovement.ChasePlayer();
     }
 
-    private void MeleeAtack()
-    {
-        Debug.LogWarning("Melee attack");
-    }
-
-    private void RangeAttack()
+    private void Attack()
     {
         Debug.LogWarning("Range attack");
+        isAttacking = true;
         enemyMovement.StopChasing();
         StartCoroutine(enemyAttack.RangeAttack());
     }
@@ -113,5 +98,11 @@ public class EnemyLogic : MonoBehaviour
     private void Death()
     {
         Debug.LogWarning("Dying");
+    }
+
+    public void SetAttackBoolFalse()
+    {
+        isAttacking = false;
+        currentStates = States.Unassigned;
     }
 }
