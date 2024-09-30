@@ -10,9 +10,6 @@ public class ModelSetupTool : EditorWindow
     GameObject model;
     private Dictionary<GameObject, GameObject> legBones = new Dictionary<GameObject, GameObject>();
     string savePath = "Assets/Prefabs/";
-    string[] navMeshAgentTypes;
-    int selectedNavMeshAgentIndex = 0;
-    float navMeshAgentBaseOffset = 0;
     float legDistanceCap = 0;
     AnimationCurve legCurve;
     float legSpeedFactor = 0;
@@ -26,11 +23,6 @@ public class ModelSetupTool : EditorWindow
         GetWindow<ModelSetupTool>("Model Setup Tool");
     }
 
-    void OnEnable()
-    {
-        navMeshAgentTypes = GetNavMeshAgentTypes();
-    }
-
     void OnGUI()
     {
         EditorGUILayout.HelpBox("The first bone of each leg has to be named in format L/R_1-n, depending on which side it is on and its position from the head to the end of the model. Gameobject that you are trying to set up has to have a child named \"Armature\", that contains all of the bones.", MessageType.Info);
@@ -38,12 +30,6 @@ public class ModelSetupTool : EditorWindow
 
         GUILayout.Label("Model", EditorStyles.boldLabel);
         model = (GameObject)EditorGUILayout.ObjectField("Model", model, typeof(GameObject), true);
-
-        GUILayout.Space(20);
-
-        GUILayout.Label("Navmesh Settings", EditorStyles.boldLabel);
-        selectedNavMeshAgentIndex = EditorGUILayout.Popup("NavMeshAgent Index", selectedNavMeshAgentIndex, navMeshAgentTypes);
-        navMeshAgentBaseOffset = EditorGUILayout.FloatField("NavMeshAgent Base Ofsset", navMeshAgentBaseOffset);
 
         GUILayout.Space(20);
 
@@ -209,7 +195,22 @@ public class ModelSetupTool : EditorWindow
 
             GameObject target = new(controllerName + "_target");
             target.transform.parent = controller.transform;
-            target.transform.position = legBones[key].transform.position;
+
+            // calculating the z offset for the leg targets for smoother animation
+            float zOffset = 0;
+            char[] charArr = controllerName.ToCharArray();
+            if (charArr[0] == 'L')
+            {
+                if ((int)charArr[1] % 2 == 0) zOffset = 0.5f;
+                else zOffset = -0.5f;
+            }
+            else if (charArr[0] == 'R')
+            {
+                if ((int)charArr[1] % 2 == 0) zOffset = -0.5f;
+                else zOffset = 0.5f;
+            }
+
+            target.transform.position = new (legBones[key].transform.position.x, legBones[key].transform.position.y, legBones[key].transform.position.z + zOffset);
             chainIKConstraint.data.target = target.transform;
 
             controller.AddComponent<IKController>();
@@ -220,16 +221,13 @@ public class ModelSetupTool : EditorWindow
 
     private void AssignVariables()
     {
-        model.GetComponent<Movement>().agent = model.GetComponent<NavMeshAgent>();
-        model.GetComponent<NavMeshAgent>().baseOffset = navMeshAgentBaseOffset;
-        model.GetComponent<NavMeshAgent>().agentTypeID = selectedNavMeshAgentIndex;
-
         GameObject rig = model.transform.Find("Rig").gameObject;
         for(int i = 0; i < rig.transform.childCount; i++)
         {
             GameObject child = rig.transform.GetChild(i).gameObject;
             IKController ikController = child.GetComponent<IKController>();
             ikController.distanceCap = legDistanceCap;
+            if (legCurve == null) legCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
             ikController.legMovementCurve = legCurve;
             ikController.speedFactor = legSpeedFactor;
         }
