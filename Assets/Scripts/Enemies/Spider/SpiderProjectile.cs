@@ -16,6 +16,7 @@ public class SpiderProjectile : MonoBehaviour
     {
         startPos = transform.position;
         midPoint =  CalculateMidPoint();
+        targetPosition.y = 0.1f;
     }
 
     private void Update()
@@ -38,7 +39,7 @@ public class SpiderProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
         {
             Instantiate(webPlanePrefab, transform.position, quaternion.identity);
             Destroy(gameObject);
