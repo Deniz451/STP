@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CharController : MonoBehaviour
@@ -14,9 +15,10 @@ public class CharController : MonoBehaviour
     [SerializeField] private float jumpHeight = 2f;
     private float gravityValue = 9.81f;
 
-    Timer timer;
-    float time1;
-    float time2;
+    [SerializeField] float coyoteTime = 0.2f;
+    float coyoteTimeCounter;
+    [SerializeField] float jumpBufferingTime = 0.2f;
+    float jumpBufferingCounter;
 
     void Start()
     {
@@ -27,6 +29,23 @@ public class CharController : MonoBehaviour
     {
         // Check if the player is grounded
         playerGrounded = controller.isGrounded;
+
+        if (playerGrounded )
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferingCounter = jumpBufferingTime;
+        }
+        else
+        {
+            jumpBufferingCounter -= Time.deltaTime;
+        }
 
         // Reset vertical velocity if grounded
         if (playerGrounded)
@@ -56,6 +75,11 @@ public class CharController : MonoBehaviour
 
         // Handle jumping
         if (Input.GetButtonDown("Jump") && groundedTimer > 0)
+        {
+            verticalVelocity = Mathf.Sqrt(jumpHeight * 2 * gravityValue);
+        }
+
+        if(coyoteTimeCounter > 0 && Input.GetButtonDown("Jump"))
         {
             verticalVelocity = Mathf.Sqrt(jumpHeight * 2 * gravityValue);
         }
