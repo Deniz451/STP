@@ -197,7 +197,7 @@ public class ModelSetupTool : EditorWindow
             target.transform.parent = controller.transform;
 
             // calculating the z offset for the leg targets for smoother animation
-            float zOffset = 0;
+            /*float zOffset = 0;
             char[] charArr = controllerName.ToCharArray();
             if (charArr[0] == 'L')
             {
@@ -208,9 +208,9 @@ public class ModelSetupTool : EditorWindow
             {
                 if ((int)charArr[1] % 2 == 0) zOffset = -0.5f;
                 else zOffset = 0.5f;
-            }
+            }*/
 
-            target.transform.position = new (legBones[key].transform.position.x, legBones[key].transform.position.y, legBones[key].transform.position.z + zOffset);
+            target.transform.position = new(legBones[key].transform.position.x, legBones[key].transform.position.y, legBones[key].transform.position.z); //+ zOffset);
             chainIKConstraint.data.target = target.transform;
 
             controller.AddComponent<IKController>();
