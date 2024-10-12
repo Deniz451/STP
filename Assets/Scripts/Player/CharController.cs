@@ -1,56 +1,94 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CharController : MonoBehaviour
 {
-    CharacterController controller;
-    float verticalVelocity;
-    bool playerGrounded;
-    float groundedTimer;
-    [SerializeField] float playerSpeed = 2f;
-    [SerializeField] float jumpHeight = 1f;
-    float gravityValue = 9.81f;
-    // Start is called before the first frame update
+    private CharacterController controller;
+    private float verticalVelocity;
+    private bool playerGrounded;
+    private float groundedTimer;
+
+    [SerializeField] private float playerSpeed = 5f; // Adjusted for better responsiveness
+    [SerializeField] private float jumpHeight = 2f;
+    private float gravityValue = 9.81f;
+
+    [SerializeField] float coyoteTime = 0.2f;
+    float coyoteTimeCounter;
+    [SerializeField] float jumpBufferingTime = 0.2f;
+    float jumpBufferingCounter;
+
     void Start()
     {
-        controller = gameObject.GetComponent<CharacterController>();
+        controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // Check if the player is grounded
         playerGrounded = controller.isGrounded;
+
+        if (playerGrounded )
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferingCounter = jumpBufferingTime;
+        }
+        else
+        {
+            jumpBufferingCounter -= Time.deltaTime;
+        }
+
+        // Reset vertical velocity if grounded
         if (playerGrounded)
         {
-            groundedTimer = 0.2f;
+            if (verticalVelocity < 0)
+            {
+                verticalVelocity = -1f; // Small downward force to keep grounded
+            }
+
+            groundedTimer = 0.2f; // Reset grounded timer
         }
-        if (groundedTimer > 0)
+        else
         {
-            groundedTimer -= Time.deltaTime;
+            groundedTimer -= Time.deltaTime; // Decrease grounded timer if not grounded
         }
-        if (playerGrounded && verticalVelocity < 0)
-        {
-            verticalVelocity = 0;
-        }
+
+        // Apply gravity
         verticalVelocity -= gravityValue * Time.deltaTime;
 
-        Vector3 move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
-        move *= playerSpeed;
+        // Get movement input
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+        Vector3 move = new Vector3(horizontalInput, 0, verticalInput).normalized; // Local input
 
-        if (move.magnitude > 0.05f)
-        {
-            gameObject.transform.forward = move;
-        }
+        // Move in the player's forward direction
+        Vector3 moveDirection = transform.TransformDirection(move) * playerSpeed;
 
+        // Handle jumping
         if (Input.GetButtonDown("Jump") && groundedTimer > 0)
         {
-            groundedTimer = 0;
             verticalVelocity = Mathf.Sqrt(jumpHeight * 2 * gravityValue);
         }
 
-        move.y = verticalVelocity;
-        controller.Move(move * Time.deltaTime);
+        if(coyoteTimeCounter > 0 && Input.GetButtonDown("Jump"))
+        {
+            verticalVelocity = Mathf.Sqrt(jumpHeight * 2 * gravityValue);
+        }
+
+        // Combine movement with vertical velocity
+        moveDirection.y = verticalVelocity;
+
+        // Move the character
+        controller.Move(moveDirection * Time.deltaTime);
     }
 }
 
