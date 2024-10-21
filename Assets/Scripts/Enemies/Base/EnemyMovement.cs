@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -10,14 +11,14 @@ public class EnemyMovement : MonoBehaviour
     private bool isChasing;
 
 
-    private void Start()
+    protected virtual void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerPosition = player.position;
         agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (isChasing) LookAtPlayer();
 
@@ -43,6 +44,9 @@ public class EnemyMovement : MonoBehaviour
 
     private void LookAtPlayer()
     {
-        transform.LookAt(player.position);
+        Vector3 rotation = Quaternion.LookRotation(player.position).eulerAngles;
+        rotation.x = 0f;
+
+        transform.rotation = Quaternion.Euler(rotation);
     }
 }

@@ -1749,13 +1749,13 @@ PrefabInstance:
       addedObject: {fileID: 472212861115162442}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9210868348794183986}
+      addedObject: {fileID: 3387552546704557871}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6614536223532957817}
+      addedObject: {fileID: 6969008715560655272}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 745673603034065915}
+      addedObject: {fileID: 7006487760087088509}
   m_SourcePrefab: {fileID: 100100000, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
 --- !u!4 &1143340110105493239 stripped
 Transform:
@@ -1958,7 +1958,7 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &9210868348794183986
+--- !u!114 &3387552546704557871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1967,11 +1967,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8576281376484204628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e35a97803abdef84c910339d5f87dc0e, type: 3}
+  m_Script: {fileID: 11500000, guid: c97ad1e0fea6f954a829a95d1a3d49b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentStates: 0
---- !u!114 &6614536223532957817
+--- !u!114 &6969008715560655272
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1980,10 +1980,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8576281376484204628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4791bcc1d0eeb2b44ad88c008f3dc2d8, type: 3}
+  m_Script: {fileID: 11500000, guid: ff92221a42dc0e44cbc5a6a19b4854fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &745673603034065915
+--- !u!114 &7006487760087088509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1992,13 +1992,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8576281376484204628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e627a625d179214c8c952a4aba3223e, type: 3}
+  m_Script: {fileID: 11500000, guid: 57e6102e2963dc74bb8ca0f6866ce087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 15
-  meleeAttackDistance: 5
-  attackDelay: 2
-  attackCooldown: 3
+  attackDistance: 10
+  meleeAttackDistance: 4
+  attackDelay: 1
+  attackCooldown: 2
   webProjectilePreafb: {fileID: 3665345548286149822, guid: a0c80e561187ab148b77389452fead2f, type: 3}
   projectileSpawnTransform: {fileID: 4745730755539412937}
 --- !u!4 &8847862538366666179 stripped
