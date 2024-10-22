@@ -13,4 +13,8 @@ public class EnemySO : ScriptableObject
 
     [Header("Projectiles")]
     public GameObject projectilePrefab;
+
+    [Header("Materials")]
+    public Material dissolveMaterial;
+    public float dissolveDuration;
 }

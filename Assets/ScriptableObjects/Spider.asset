@@ -18,3 +18,5 @@ MonoBehaviour:
   attackDelay: 0.5
   attackCooldown: 5
   projectilePrefab: {fileID: 3665345548286149822, guid: a0c80e561187ab148b77389452fead2f, type: 3}
+  dissolveMaterial: {fileID: 2100000, guid: 2d8dfabbec22c8a47b31793471e699e4, type: 2}
+  dissolveDuration: 4

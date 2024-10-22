@@ -44,6 +44,7 @@ public class testMovement : MonoBehaviour
 
     private void LookAtPlayer()
     {
+        Debug.Log("Looking");
         Vector3 rotation = Quaternion.LookRotation(player.position).eulerAngles;
         rotation.x = 0f;
 

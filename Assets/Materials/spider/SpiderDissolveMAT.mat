@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SpiderDissolveMaterial
+  m_Name: SpiderDissolveMAT
   m_Shader: {fileID: -6465566751694194690, guid: 0012356bb36200341a168ff2d03ced30, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -41,6 +41,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _AlphaCliping: 0.8717937
     - _BUILTIN_AlphaClip: 1
     - _BUILTIN_Blend: 0
     - _BUILTIN_CullMode: 0

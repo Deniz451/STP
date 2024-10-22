@@ -2,6 +2,7 @@
 // class checks statemnets depending on values and decides which state teh enemy should be in
 // after the state switch OnStateSwitch functions is executed respective functions in other classes are called
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public class testLogic : MonoBehaviour
@@ -21,6 +22,7 @@ public class testLogic : MonoBehaviour
     private Transform player;
     private bool isAttacking;
 
+
     private testMovement movement;
     private testAttack attack;
     private testHealth health;
@@ -28,11 +30,15 @@ public class testLogic : MonoBehaviour
 
     private void Start()
     {
+
+
         movement = GetComponent<testMovement>();
         attack = GetComponent<testAttack>();
         health = GetComponent<testHealth>();
+
         attack.OnAttackComplete += CompletedAttack;
         health.OnDeath += Death;
+
         // maybe make player transform accessible globaly?
         player = GameObject.FindGameObjectWithTag("Player")?.transform ?? player;
         Spawn();
