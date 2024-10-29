@@ -1,46 +1,44 @@
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.GraphicsBuffer;
 
-public class EnemyMovement : MonoBehaviour
+public abstract class EnemyMovement : MonoBehaviour
 {
 
     private Transform player;
-    private NavMeshAgent agent;
-    private Vector3 playerPosition;
+    protected NavMeshAgent agent;
     private bool isChasing;
 
 
     protected virtual void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerPosition = player.position;
+        player = GameObject.FindGameObjectWithTag("Player")?.transform ?? player;
         agent = GetComponent<NavMeshAgent>();
     }
 
     protected virtual void Update()
     {
-        if (isChasing) LookAtPlayer();
+        // tries to find the player if there was no initialy at the start
+        if (player == null && GameObject.FindGameObjectWithTag("Player")) player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        if (Vector3.Distance(playerPosition, player.position) > 3 && isChasing)
+        if (player != null && isChasing)
         {
+            LookAtPlayer();
             ChasePlayer();
         }
     }
 
-    // Gets triggered once by the EnemyLogic script on state change, needs to chase player constantly until told otherwise
+    // gets called from the logic only once, after gets called every frame to update the playes position until said otherwise
     public void ChasePlayer()
     {
         isChasing = true;
-        playerPosition = player.position;
-        agent.SetDestination(playerPosition);
+        agent.isStopped = false;
+        if (player != null) agent.SetDestination(player.position);
     }
 
     public void StopChasing()
     {
-        agent.SetDestination(agent.transform.position);
-        agent.isStopped = false;
-    }
+        isChasing = false;
+        agent.isStopped = true;    }
 
     private void LookAtPlayer()
     {

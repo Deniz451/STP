@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpiderEnemyMovement : EnemyMovement
+public class MosquitoEnemyHealth : EnemyHealth
 {
     protected override void Start()
     {

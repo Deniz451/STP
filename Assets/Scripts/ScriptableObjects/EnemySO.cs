@@ -1,3 +1,4 @@
+using UnityEditor.Animations;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Enemy", menuName = "ScriptableObjects/Enemy", order = 1)]
@@ -17,4 +18,7 @@ public class EnemySO : ScriptableObject
     [Header("Materials")]
     public Material dissolveMaterial;
     public float dissolveDuration;
+
+    [Space(20)]
+    public AnimatorController animatorController;
 }

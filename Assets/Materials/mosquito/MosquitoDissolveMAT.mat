@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SpiderDissolveMAT
+  m_Name: MosquitoDissolveMAT
   m_Shader: {fileID: -6465566751694194690, guid: 0012356bb36200341a168ff2d03ced30, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -41,7 +41,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _AlphaCliping: 0.68075746
+    - _AlphaCliping: 1
     - _BUILTIN_AlphaClip: 1
     - _BUILTIN_Blend: 0
     - _BUILTIN_CullMode: 0
@@ -57,5 +57,5 @@ Material:
     - _Scale: 10
     m_Colors:
     - _Color: {r: 7.999999, g: 0.07680971, b: 0, a: 1}
-    - _DefaultColor: {r: 0, g: 0, b: 0, a: 1}
+    - _DefaultColor: {r: 0.40784314, g: 0.36078432, b: 0.3529412, a: 1}
   m_BuildTextureStacks: []

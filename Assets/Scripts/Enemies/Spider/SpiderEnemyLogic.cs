@@ -5,48 +5,46 @@ public class SpiderEnemyLogic : EnemyLogic
 
     private SpiderEnemyMovement spiderEnemyMovement;
     private SpiderEnemyAttack spiderEnemyAttack;
+    private SpiderEnemyHealth spiderEnemyHealth;
 
 
-    void Start()
+    protected override void Start()
     {
         base.Start();
+
         spiderEnemyMovement = GetComponent<SpiderEnemyMovement>();
         spiderEnemyAttack = GetComponent<SpiderEnemyAttack>();
+        spiderEnemyHealth = GetComponent<SpiderEnemyHealth>();
+
+        spiderEnemyAttack.OnAttackComplete += CompletedAttack;
+        spiderEnemyHealth.OnDeath += Death;
     }
 
-    void Update()
+    protected override void Update()
     {
-        if (player != null) base.Update();
-    }
-
-    protected override void CheckForStates()
-    {
-        if (Vector3.Distance(transform.position, player.transform.position) > spiderEnemyAttack.attackDistance)
-        {
-            currentStates = States.Chasing;
-        }
-        else if (Vector3.Distance(transform.position, player.transform.position) <= spiderEnemyAttack.attackDistance)
-        {
-            currentStates = States.Attack;
-        }
+        base.Update();
     }
 
     protected override void Chase()
     {
-        Debug.LogWarning("Spider is chasing");
         spiderEnemyMovement.ChasePlayer();
     }
 
     protected override void Attack()
     {
-        Debug.LogWarning("Spider is doing range attack");
         isAttacking = true;
         spiderEnemyMovement.StopChasing();
-        StartCoroutine(spiderEnemyAttack.RangeAttack());
+
+        StartCoroutine(spiderEnemyAttack.Attack(player.position));
     }
 
     protected override void Death()
     {
-        Debug.LogWarning("Spider is dying");
+        base.Death();
+        spiderEnemyMovement.StopChasing();
+        spiderEnemyMovement.StopAllCoroutines();
+        spiderEnemyAttack.StopAllCoroutines();
+        StopAllCoroutines();
     }
+
 }

@@ -1,25 +1,25 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 public abstract class EnemyAttack : MonoBehaviour
 {
 
-    public float attackDistance;
-    [SerializeField] protected bool hasMeleeAttack;
-    [SerializeField] protected bool hasRangeAttack;
-    [SerializeField] protected float meleeAttackDistance;
-    [SerializeField] protected float attackDelay; // the time after entering attack state and before firing projectile
-    [SerializeField] protected float attackCooldown; // the time after firing projectile before checking next move
+    [SerializeField] protected EnemySO enemySO;
     protected Transform player;
+    public Action OnAttackComplete;
 
 
-    private void Start()
+    protected virtual void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player")?.transform ?? player;
     }
 
-    
-    public abstract IEnumerator RangeAttack();
+    protected virtual void Update()
+    {
+        // tries to find the player if there was no initialy at the start
+        if (player == null && GameObject.FindGameObjectWithTag("Player")) player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
-    public abstract IEnumerator MeleeAttack();
+    public abstract IEnumerator Attack(Vector3 targetPosition);
 }

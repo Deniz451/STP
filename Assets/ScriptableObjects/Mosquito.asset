@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2363a27d924efc44f811bf1e4e511cdc, type: 3}
-  m_Name: Spider
+  m_Name: Mosquito
   m_EditorClassIdentifier: 
   health: 100
   damage: 20
-  attackDistance: 30
+  attackDistance: 8
   attackDelay: 0.5
-  attackCooldown: 5
-  projectilePrefab: {fileID: 3665345548286149822, guid: a0c80e561187ab148b77389452fead2f, type: 3}
-  dissolveMaterial: {fileID: 2100000, guid: 2d8dfabbec22c8a47b31793471e699e4, type: 2}
+  attackCooldown: 3
+  projectilePrefab: {fileID: 0}
+  dissolveMaterial: {fileID: 2100000, guid: 7a5cdd2655cdd1647a4d47c8e1076018, type: 2}
   dissolveDuration: 4
-  animatorController: {fileID: 9100000, guid: ac2e6d1ea95ab5247aa801f88d38a71c, type: 2}
+  animatorController: {fileID: 9100000, guid: 32adb59e84469594494d9e8a9b159302, type: 2}

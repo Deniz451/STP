@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpiderEnemyMovement : EnemyMovement
+public class SpiderEnemyHealth : EnemyHealth
 {
     protected override void Start()
     {
@@ -9,6 +9,6 @@ public class SpiderEnemyMovement : EnemyMovement
 
     protected override void Update()
     {
-        base.Update();
+        base.Update();  
     }
 }

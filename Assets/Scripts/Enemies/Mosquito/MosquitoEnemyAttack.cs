@@ -1,25 +1,30 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class MosquitoEnemyAttack : EnemyAttack
 {
 
-    private MosquitoEnemyLogic mosquitoEnemyLogic;
+    private Rigidbody rb;
+    public Action OnAttackStart;
 
 
-    public override IEnumerator RangeAttack()
+    protected override void Start()
     {
-        if (hasRangeAttack)
-        {
-            yield return new WaitForSeconds(attackDelay);
-        }
+        base.Start();
+
+        rb = GetComponent<Rigidbody>();
     }
 
-    public override IEnumerator MeleeAttack()
+    public override IEnumerator Attack(Vector3 targetPosition)
     {
-        if (hasMeleeAttack)
-        {
-            yield return new WaitForSeconds(attackDelay);
-        }
+        yield return new WaitForSeconds(enemySO.attackDelay);
+        OnAttackStart?.Invoke();
+
+        Vector3 dashDirection = (targetPosition - transform.position).normalized;
+        rb.AddForce(dashDirection * 800, ForceMode.Impulse);
+
+        yield return new WaitForSeconds(enemySO.attackCooldown);
+        OnAttackComplete?.Invoke();
     }
 }

@@ -3,50 +3,48 @@ using UnityEngine;
 public class MosquitoEnemyLogic : EnemyLogic
 {
 
-    private MosquitoEnemyMovement mosquitEnemyMovement;
-    private MosquitoEnemyAttack mosquitEnemyAttack;
+    private MosquitoEnemyMovement mosquitoEnemyMovement;
+    private MosquitoEnemyAttack mosquitoEnemyAttack;
+    private MosquitoEnemyHealth mosquitoEnemyHealth;
 
 
-    void Start()
+    protected override void Start()
     {
         base.Start();
-        mosquitEnemyMovement = GetComponent<MosquitoEnemyMovement>();
-        mosquitEnemyAttack = GetComponent<MosquitoEnemyAttack>();
+
+        mosquitoEnemyMovement = GetComponent<MosquitoEnemyMovement>();
+        mosquitoEnemyAttack = GetComponent<MosquitoEnemyAttack>();
+        mosquitoEnemyHealth = GetComponent<MosquitoEnemyHealth>();
+
+        mosquitoEnemyAttack.OnAttackComplete += CompletedAttack;
+        mosquitoEnemyHealth.OnDeath += Death;
     }
 
-    void Update()
+    protected override void Update()
     {
-        if (player != null) base.Update();
-    }
-
-    protected override void CheckForStates()
-    {
-        if (Vector3.Distance(transform.position, player.transform.position) > mosquitEnemyAttack.attackDistance)
-        {
-            currentStates = States.Chasing;
-        }
-        else if (Vector3.Distance(transform.position, player.transform.position) <= mosquitEnemyAttack.attackDistance)
-        {
-            currentStates = States.Attack;
-        }
+        base.Update();
     }
 
     protected override void Chase()
     {
-        Debug.LogWarning("Mosquito is chasing");
-        mosquitEnemyMovement.ChasePlayer();
+        mosquitoEnemyMovement.ChasePlayer();
     }
 
     protected override void Attack()
     {
-        Debug.LogWarning("Masquito is doing range attack");
         isAttacking = true;
-        mosquitEnemyMovement.StopChasing();
-        StartCoroutine(mosquitEnemyAttack.RangeAttack()); ;
+        mosquitoEnemyMovement.StopChasing();
+
+        StartCoroutine(mosquitoEnemyAttack.Attack(player.position));
     }
 
     protected override void Death()
     {
-        Debug.LogWarning("Mosquito is dying");
+        base.Death();
+        mosquitoEnemyMovement.StopChasing();
+        mosquitoEnemyMovement.StopAllCoroutines();
+        mosquitoEnemyAttack.StopAllCoroutines();
+        StopAllCoroutines();
     }
+
 }

@@ -1,52 +1,67 @@
-// This script does not tell enemy any specific tasks
-// Script only checks for conditions and depending on them changes the state of the enemy
-// Depending on states the script then instructs other scripts what to do
-// After the right condition is met, the script changes enemy state and triggers the respective function only once
-// The function than locates appropriate script and tells it, also only once, what to do
+// class does not execute specific functions
+// class checks statemnets depending on values and decides which state teh enemy should be in
+// after the state switch OnStateSwitch functions is executed respective functions in other classes are called
 
 using UnityEngine;
 
 public abstract class EnemyLogic : MonoBehaviour
 {
 
-    // private variables
-    protected enum States
+    private enum States
     {
         Unassigned,
         Chasing,
         Attack,
         Death
     }
-    [SerializeField] protected States currentStates = States.Unassigned;
+    [SerializeField] private States currentStates = States.Unassigned;
     private States lastState = States.Unassigned;
+
+    [SerializeField] private EnemySO enemySO;
     protected Transform player;
     protected bool isAttacking;
 
 
-    // finds variables and triggers spawn function
     protected virtual void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        // maybe make player transform accessible globaly?
+        player = GameObject.FindGameObjectWithTag("Player")?.transform ?? player;
         Spawn();
     }
 
-    // checks for state change condition and if last state doesn equal to current state triggers new action
     protected virtual void Update()
     {
+        // tries to find the player if there was no initialy at the start
+        if (player == null && GameObject.FindGameObjectWithTag("Player")) player = GameObject.FindGameObjectWithTag("Player").transform;
+
         if (!isAttacking) CheckForStates();
 
         if (lastState != currentStates)
         {
             lastState = currentStates;
-            CheckForActions();
+            OnStateChange();
         }
     }
 
-    protected abstract void CheckForStates();
-
-    private void CheckForActions()
+    private void CheckForStates()
     {
-        switch(currentStates)
+        if (player != null && Vector3.Distance(transform.position, player.transform.position) > enemySO.attackDistance)
+        {
+            currentStates = States.Chasing;
+        }
+        else if (player != null && Vector3.Distance(transform.position, player.transform.position) <= enemySO.attackDistance)
+        {
+            currentStates = States.Attack;
+        }
+        else if (GameObject.FindGameObjectWithTag("Player") == null)
+        {
+            currentStates = States.Unassigned;
+        }
+    }
+
+    private void OnStateChange()
+    {
+        switch (currentStates)
         {
             case States.Chasing:
                 Chase();
@@ -54,12 +69,14 @@ public abstract class EnemyLogic : MonoBehaviour
             case States.Attack:
                 Attack();
                 break;
-            case States.Death:
-                Death();
-                break;
+                /*case States.Death:
+                    Death();
+                    break;*/
         }
     }
 
+    // the first state when enemy is instantiated
+    // later add things like play spawn animations etc
     private void Spawn()
     {
         currentStates = States.Chasing;
@@ -69,11 +86,15 @@ public abstract class EnemyLogic : MonoBehaviour
 
     protected abstract void Attack();
 
-    protected abstract void Death();
+    protected virtual void Death()
+    {
+        currentStates = States.Death;
+        StopAllCoroutines();
+        GameObject.Find("Rig").SetActive(false);
+    }
 
-    public void SetAttackBoolFalse()
+    protected void CompletedAttack()
     {
         isAttacking = false;
-        currentStates = States.Unassigned;
     }
 }
