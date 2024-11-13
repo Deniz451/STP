@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2363a27d924efc44f811bf1e4e511cdc, type: 3}
-  m_Name: Mosquito
+  m_Name: Woodlouse
   m_EditorClassIdentifier: 
   health: 100
-  damage: 20
-  attackDistance: 8
+  damage: 30
+  attackDistance: 10
   attackDelay: 0.5
   attackCooldown: 3
   projectilePrefab: {fileID: 0}
-  dissolveMaterial: {fileID: 2100000, guid: 8f4e77e954f6e714cb389725edf9ae42, type: 2}
+  dissolveMaterial: {fileID: 2100000, guid: 747ccbd006ce12b46900f73e8da03bdf, type: 2}
   dissolveDuration: 4
-  animatorController: {fileID: 9100000, guid: 32adb59e84469594494d9e8a9b159302, type: 2}
+  animatorController: {fileID: 9100000, guid: 578cfbf3b54bc4f40b8c7dc1dcb36bab, type: 2}

@@ -7,6 +7,9 @@ public class MosquitoEnemyAttack : EnemyAttack
 
     private Rigidbody rb;
     public Action OnAttackStart;
+    [SerializeField] private float attackDuration;
+    [SerializeField] private float attackForce;
+    private float elapsedAttackTime;
 
 
     protected override void Start()
@@ -22,9 +25,17 @@ public class MosquitoEnemyAttack : EnemyAttack
         OnAttackStart?.Invoke();
 
         Vector3 dashDirection = (targetPosition - transform.position).normalized;
-        rb.AddForce(dashDirection * 800, ForceMode.Impulse);
+
+        while (elapsedAttackTime <= attackDuration)
+        {
+            Debug.Log("Attacking");
+            elapsedAttackTime += Time.deltaTime;
+            rb.AddForce(dashDirection * attackForce, ForceMode.Force);
+            yield return null;
+        }
 
         yield return new WaitForSeconds(enemySO.attackCooldown);
         OnAttackComplete?.Invoke();
+        elapsedAttackTime = 0;
     }
 }

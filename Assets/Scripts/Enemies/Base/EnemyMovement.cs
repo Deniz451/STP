@@ -6,7 +6,7 @@ public abstract class EnemyMovement : MonoBehaviour
 
     private Transform player;
     protected NavMeshAgent agent;
-    private bool isChasing;
+    private bool isChasing = false;
 
 
     protected virtual void Start()
@@ -38,7 +38,8 @@ public abstract class EnemyMovement : MonoBehaviour
     public void StopChasing()
     {
         isChasing = false;
-        agent.isStopped = true;    }
+        agent.isStopped = true;    
+    }
 
     private void LookAtPlayer()
     {

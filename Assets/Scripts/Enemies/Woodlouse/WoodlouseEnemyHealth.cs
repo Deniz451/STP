@@ -1,11 +1,7 @@
 using UnityEngine;
 
-public class MosquitoEnemyMovement : EnemyMovement
+public class WoodlouseEnemyHealth : EnemyHealth
 {
-
-    private MosquitoEnemyAttack mosquitoEnemyAttack;
-
-
     protected override void Start()
     {
         base.Start();

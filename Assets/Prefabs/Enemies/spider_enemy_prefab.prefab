@@ -1638,15 +1638,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -12.153704
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.247
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: 13.638546
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1679,31 +1679,31 @@ PrefabInstance:
     - target: {fileID: -6065260667050335848, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cfe172761b49d10478f5d959d76ae908, type: 2}
+      objectReference: {fileID: 2100000, guid: c9d9c69973cfc8942a97bd02709a80d1, type: 2}
     - target: {fileID: -4434197653604907548, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cfe172761b49d10478f5d959d76ae908, type: 2}
+      objectReference: {fileID: 2100000, guid: c9d9c69973cfc8942a97bd02709a80d1, type: 2}
     - target: {fileID: -4226184352504026075, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cfe172761b49d10478f5d959d76ae908, type: 2}
+      objectReference: {fileID: 2100000, guid: c9d9c69973cfc8942a97bd02709a80d1, type: 2}
     - target: {fileID: -3192955935171646185, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cfe172761b49d10478f5d959d76ae908, type: 2}
+      objectReference: {fileID: 2100000, guid: c9d9c69973cfc8942a97bd02709a80d1, type: 2}
     - target: {fileID: -1948193994638723066, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cfe172761b49d10478f5d959d76ae908, type: 2}
+      objectReference: {fileID: 2100000, guid: c9d9c69973cfc8942a97bd02709a80d1, type: 2}
     - target: {fileID: -1206874426333947015, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d98bc93e76d9fe24e82cda37d76c327f, type: 2}
+      objectReference: {fileID: 2100000, guid: 9e3af1bb6867ef943ac8873e2edc208d, type: 2}
     - target: {fileID: -898461786114195365, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cfe172761b49d10478f5d959d76ae908, type: 2}
+      objectReference: {fileID: 2100000, guid: c9d9c69973cfc8942a97bd02709a80d1, type: 2}
     - target: {fileID: 919132149155446097, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_Name
       value: spider_enemy_prefab
@@ -1711,11 +1711,11 @@ PrefabInstance:
     - target: {fileID: 2951354204013437600, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cfe172761b49d10478f5d959d76ae908, type: 2}
+      objectReference: {fileID: 2100000, guid: c9d9c69973cfc8942a97bd02709a80d1, type: 2}
     - target: {fileID: 7696400997347240117, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cfe172761b49d10478f5d959d76ae908, type: 2}
+      objectReference: {fileID: 2100000, guid: c9d9c69973cfc8942a97bd02709a80d1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1998,7 +1998,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2.25
-  m_BaseOffset: 0.5
+  m_BaseOffset: 1.21
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &3387552546704557871
