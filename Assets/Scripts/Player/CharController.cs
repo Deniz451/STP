@@ -12,7 +12,7 @@ public class CharController : MonoBehaviour
     private float groundedTimer;
 
     [SerializeField] private float playerSpeed = 5f; // Adjusted for better responsiveness
-    [SerializeField] private float jumpHeight = 2f;
+    [SerializeField] private float jumpHeight = 1f;
     private float gravityValue = 9.81f;
 
     [SerializeField] float coyoteTime = 0.2f;
