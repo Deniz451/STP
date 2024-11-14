@@ -16,12 +16,11 @@ public class IKController : MonoBehaviour
     private bool isOnGround = true;
     private float t = 0f;
 
-
     [Header("Gizmo Settings")]
-    [SerializeField] private bool raycastLine = true;
-    [SerializeField] private bool lockOnPosition = true;
-
-
+    [SerializeField] private bool Raycast = true;
+    [SerializeField] private bool LegStickingPosition = true;
+    [SerializeField] private bool EndBoneFollowPosition = true;
+    [SerializeField] private bool RaycastHitPoint = true;
 
 
     private void Start()
@@ -33,7 +32,6 @@ public class IKController : MonoBehaviour
     private void Update()
     {
         ControlLeg();
-
         ShootRaycast();
     }
 
@@ -57,9 +55,12 @@ public class IKController : MonoBehaviour
 
             if (Vector3.Distance(target.position, targetPos) <= 0.1)
             {
+                target.position = targetPos;
                 isOnGround = true;
                 t = 0f;
             }
+
+            //target.position = targetPos;
         }
     }
 
@@ -80,26 +81,34 @@ public class IKController : MonoBehaviour
         if (Vector3.Distance(target.position, raycastHitPos) >= distanceCap) ChangeTargetPosition();
     }
 
-    // changes the target position to the current position of the raycast and tell the leg to move by boolean
+    // changes the target position to the current position of the raycast and tells the leg to move by boolean
     private void ChangeTargetPosition()
     {
         targetPos = raycastHitPos;
         isOnGround = false;
     }
+
     void OnDrawGizmos()
     {
-        // if active draw line gizmo
-        if (raycastLine)
+        if (Raycast)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawLine(rayOrigin, rayOrigin + rayDirection * 10f);
         }
-
-        // if active draw target position gizmo
-        if (lockOnPosition)
+        if (LegStickingPosition)
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(targetPos, 0.35f);
+        }
+        if (EndBoneFollowPosition)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(target.position, 0.15f);
+        }
+        if (RaycastHitPoint)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(raycastHitPos, 0.075f);
         }
     }
 }

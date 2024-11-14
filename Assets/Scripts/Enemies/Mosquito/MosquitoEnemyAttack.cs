@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MosquitoEnemyAttack : EnemyAttack
 {
-    public Action OnAttackStart;
+    public Action OnAttackStart; // Why does this exist - remove?
     private float elapsedAttackTime;
 
 
@@ -16,10 +16,8 @@ public class MosquitoEnemyAttack : EnemyAttack
     public override IEnumerator Attack(Vector3 targetPosition)
     {
         yield return new WaitForSeconds(enemyReferences.enemySO.attackDelay);
-        OnAttackStart?.Invoke();
 
         Vector3 dashDirection = (targetPosition - transform.position).normalized;
-
         while (elapsedAttackTime <= enemyReferences.enemySO.dashAttackDuration)
         {
             Debug.Log("Attacking");
@@ -27,9 +25,11 @@ public class MosquitoEnemyAttack : EnemyAttack
             enemyReferences.rb.AddForce(dashDirection * enemyReferences.enemySO.dashAttackForce, ForceMode.Force);
             yield return null;
         }
+        enemyReferences.rb.velocity = Vector3.zero;
+        elapsedAttackTime = 0;
 
         yield return new WaitForSeconds(enemyReferences.enemySO.attackCooldown);
+        if (Vector3.Distance(transform.position, enemyReferences.playerTransform.position) <= enemyReferences.enemySO.attackDistance) StartCoroutine(Attack(enemyReferences.playerTransform.position));
         OnAttackComplete?.Invoke();
-        elapsedAttackTime = 0;
     }
 }

@@ -38,12 +38,13 @@ public abstract class EnemyMovement : MonoBehaviour
     public void StopChasing()
     {
         isChasing = false;
+        enemyReferences.rb.velocity = Vector3.zero;
     }
 
     private void LookAtPlayer()
     {
-        Vector3 lookAt = enemyReferences.playerTransform.position;
-        lookAt.y = 0;
-        transform.LookAt(lookAt);
+        transform.LookAt(enemyReferences.playerTransform.position);
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+
     }
 }
