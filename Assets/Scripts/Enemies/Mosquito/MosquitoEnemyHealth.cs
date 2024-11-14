@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class MosquitoEnemyHealth : EnemyHealth
 {
     protected override void Start()

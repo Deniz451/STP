@@ -6,7 +6,6 @@ using UnityEngine;
 
 public abstract class EnemyLogic : MonoBehaviour
 {
-
     private enum States
     {
         Unassigned,
@@ -17,23 +16,17 @@ public abstract class EnemyLogic : MonoBehaviour
     [SerializeField] private States currentStates = States.Unassigned;
     private States lastState = States.Unassigned;
 
-    [SerializeField] private EnemySO enemySO;
-    protected Transform player;
+    protected EnemyReferences enemyReferences;    
     protected bool isAttacking;
-
 
     protected virtual void Start()
     {
-        // maybe make player transform accessible globaly?
-        player = GameObject.FindGameObjectWithTag("Player")?.transform ?? player;
+        enemyReferences = GetComponent<EnemyReferences>();
         Spawn();
     }
 
     protected virtual void Update()
     {
-        // tries to find the player if there was no initialy at the start
-        if (player == null && GameObject.FindGameObjectWithTag("Player")) player = GameObject.FindGameObjectWithTag("Player").transform;
-
         if (!isAttacking) CheckForStates();
 
         if (lastState != currentStates)
@@ -45,11 +38,11 @@ public abstract class EnemyLogic : MonoBehaviour
 
     private void CheckForStates()
     {
-        if (player != null && Vector3.Distance(transform.position, player.transform.position) > enemySO.attackDistance)
+        if (enemyReferences.playerTransform != null && Vector3.Distance(transform.position, enemyReferences.playerTransform.transform.position) > enemyReferences.enemySO.attackDistance)
         {
             currentStates = States.Chasing;
         }
-        else if (player != null && Vector3.Distance(transform.position, player.transform.position) <= enemySO.attackDistance)
+        else if (enemyReferences.playerTransform  != null && Vector3.Distance(transform.position, enemyReferences.playerTransform.transform.position) <= enemyReferences.enemySO.attackDistance)
         {
             currentStates = States.Attack;
         }
@@ -69,9 +62,10 @@ public abstract class EnemyLogic : MonoBehaviour
             case States.Attack:
                 Attack();
                 break;
-                /*case States.Death:
-                    Death();
-                    break;*/
+            // Death does not need a state - probablly remove?
+            /*case States.Death:
+                Death();
+                break;*/
         }
     }
 

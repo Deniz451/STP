@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class MosquitoEnemyMovement : EnemyMovement
 {
-
-    private MosquitoEnemyAttack mosquitoEnemyAttack;
-
-
     protected override void Start()
     {
         base.Start();

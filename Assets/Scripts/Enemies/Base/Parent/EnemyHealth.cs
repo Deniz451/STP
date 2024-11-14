@@ -4,22 +4,20 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-
-    [SerializeField] private EnemySO enemySO;
-    private Animator animator;
+    private EnemyReferences enemyReferences;
     public Action OnDeath;
-    public float health; // make private
+    public float health; // After testing make var private
     private bool isDead = false;
 
-
-    // REMAKE
+    // Array that stores gameobject that are separte from the main body gameobject of the enemy
+    // and deletes all of the objects in arr on death - remake models?
     public GameObject[] gameobjectsToDelete;
 
 
     protected virtual void Start()
     {
-        health = enemySO.health;
-        animator = GetComponent<Animator>();
+        enemyReferences = GetComponent<EnemyReferences>();
+        health = enemyReferences.enemySO.health;
     }
 
     protected virtual void Update()
@@ -32,13 +30,13 @@ public class EnemyHealth : MonoBehaviour
         isDead = true;
         OnDeath?.Invoke();
 
+        // Currently fixing death animations
         //yield return StartCoroutine(PlayDeathAnimation());
         StartCoroutine(ApplyDisolveShader());
 
-        // REMAKE
         foreach (GameObject objectToDelete in gameobjectsToDelete) Destroy(objectToDelete);
 
-        yield return new WaitForSeconds(enemySO.dissolveDuration);
+        yield return new WaitForSeconds(enemyReferences.enemySO.dissolveDuration);
 
         Destroy(gameObject);
     }
@@ -47,13 +45,13 @@ public class EnemyHealth : MonoBehaviour
     {
         float dissolveProgress = 0f;
 
-        GameObject.Find("body").GetComponent<Renderer>().material = enemySO.dissolveMaterial;
+        GameObject.Find("body").GetComponent<Renderer>().material = enemyReferences.enemySO.dissolveMaterial;
 
         while (dissolveProgress < 1f)
         {
-            dissolveProgress += Time.deltaTime / enemySO.dissolveDuration;
+            dissolveProgress += Time.deltaTime / enemyReferences.enemySO.dissolveDuration;
             dissolveProgress = Mathf.Clamp01(dissolveProgress);
-            enemySO.dissolveMaterial.SetFloat("_AlphaCliping", dissolveProgress);
+            enemyReferences.enemySO.dissolveMaterial.SetFloat("_AlphaCliping", dissolveProgress);
 
             yield return null;
         }
@@ -61,8 +59,8 @@ public class EnemyHealth : MonoBehaviour
 
     private IEnumerator PlayDeathAnimation()
     {
-        animator.runtimeAnimatorController = enemySO.animatorController;
-        animator.SetTrigger("death");
+        enemyReferences.animator.runtimeAnimatorController = enemyReferences.enemySO.animatorController;
+        enemyReferences.animator.SetTrigger("death");
         yield return new WaitForSeconds(0.5f);
     }
 }

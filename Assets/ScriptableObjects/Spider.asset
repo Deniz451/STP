@@ -18,6 +18,9 @@ MonoBehaviour:
   attackDelay: 0.5
   attackCooldown: 5
   projectilePrefab: {fileID: 3665345548286149822, guid: a0c80e561187ab148b77389452fead2f, type: 3}
+  dashAttackDuration: 0
+  dashAttackForce: 0
+  moveSpeed: 5
   dissolveMaterial: {fileID: 2100000, guid: d81ba3a064c23ed41952f96f6732fa6f, type: 2}
   dissolveDuration: 4
   animatorController: {fileID: 9100000, guid: ac2e6d1ea95ab5247aa801f88d38a71c, type: 2}

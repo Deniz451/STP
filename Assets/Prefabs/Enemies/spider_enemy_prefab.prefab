@@ -1638,15 +1638,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.153704
+      value: -0.30389023
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.247
+      value: 0.0031166077
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.638546
+      value: -0.11281681
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1746,9 +1746,6 @@ PrefabInstance:
       addedObject: {fileID: 8218768722114346445}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 472212861115162442}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 3387552546704557871}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       insertIndex: -1
@@ -1759,6 +1756,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3570778080854433675}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -433538305163309847}
   m_SourcePrefab: {fileID: 100100000, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
 --- !u!1 &802494912735543853 stripped
 GameObject:
@@ -1979,28 +1979,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!195 &472212861115162442
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8576281376484204628}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 2.5
-  m_Speed: 10
-  m_Acceleration: 20
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0.5
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2.25
-  m_BaseOffset: 1.21
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &3387552546704557871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2014,7 +1992,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentStates: 0
-  enemySO: {fileID: 11400000, guid: 86f6912627f5e7f48bbb10285002775f, type: 2}
 --- !u!114 &6969008715560655272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2039,7 +2016,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e6102e2963dc74bb8ca0f6866ce087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySO: {fileID: 11400000, guid: 86f6912627f5e7f48bbb10285002775f, type: 2}
   projectileSpawnTransform: {fileID: 4745730755539412937}
 --- !u!114 &3570778080854433675
 MonoBehaviour:
@@ -2053,7 +2029,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c1ae595f1d7964ca6a5a1275dc549c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySO: {fileID: 11400000, guid: 86f6912627f5e7f48bbb10285002775f, type: 2}
   health: 0
   gameobjectsToDelete:
   - {fileID: 802494912735543853}
@@ -2064,6 +2039,22 @@ MonoBehaviour:
   - {fileID: 4926501984024051157}
   - {fileID: 3789837852860334332}
   - {fileID: 8470091293519898511}
+--- !u!114 &-433538305163309847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8576281376484204628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd5a1b740214e574a8b964bde3c572fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySO: {fileID: 11400000, guid: 86f6912627f5e7f48bbb10285002775f, type: 2}
+  playerTransform: {fileID: 0}
+  rb: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!4 &8847862538366666179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 75883555937999046, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class SpiderEnemyLogic : EnemyLogic
 {
-
     private SpiderEnemyMovement spiderEnemyMovement;
     private SpiderEnemyAttack spiderEnemyAttack;
     private SpiderEnemyHealth spiderEnemyHealth;
@@ -35,7 +34,7 @@ public class SpiderEnemyLogic : EnemyLogic
         isAttacking = true;
         spiderEnemyMovement.StopChasing();
 
-        StartCoroutine(spiderEnemyAttack.Attack(player.position));
+        StartCoroutine(spiderEnemyAttack.Attack(enemyReferences.playerTransform.position));
     }
 
     protected override void Death()
