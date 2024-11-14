@@ -4,38 +4,32 @@ using UnityEngine;
 
 public class MosquitoEnemyAttack : EnemyAttack
 {
-
-    private Rigidbody rb;
-    public Action OnAttackStart;
-    [SerializeField] private float attackDuration;
-    [SerializeField] private float attackForce;
+    public Action OnAttackStart; // Why does this exist - remove?
     private float elapsedAttackTime;
 
 
     protected override void Start()
     {
         base.Start();
-
-        rb = GetComponent<Rigidbody>();
     }
 
     public override IEnumerator Attack(Vector3 targetPosition)
     {
-        yield return new WaitForSeconds(enemySO.attackDelay);
-        OnAttackStart?.Invoke();
+        yield return new WaitForSeconds(enemyReferences.enemySO.attackDelay);
 
         Vector3 dashDirection = (targetPosition - transform.position).normalized;
-
-        while (elapsedAttackTime <= attackDuration)
+        while (elapsedAttackTime <= enemyReferences.enemySO.dashAttackDuration)
         {
             Debug.Log("Attacking");
             elapsedAttackTime += Time.deltaTime;
-            rb.AddForce(dashDirection * attackForce, ForceMode.Force);
+            enemyReferences.rb.AddForce(dashDirection * enemyReferences.enemySO.dashAttackForce, ForceMode.Force);
             yield return null;
         }
-
-        yield return new WaitForSeconds(enemySO.attackCooldown);
-        OnAttackComplete?.Invoke();
+        enemyReferences.rb.velocity = Vector3.zero;
         elapsedAttackTime = 0;
+
+        yield return new WaitForSeconds(enemyReferences.enemySO.attackCooldown);
+        if (Vector3.Distance(transform.position, enemyReferences.playerTransform.position) <= enemyReferences.enemySO.attackDistance) StartCoroutine(Attack(enemyReferences.playerTransform.position));
+        OnAttackComplete?.Invoke();
     }
 }

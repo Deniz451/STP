@@ -34,7 +34,7 @@ public class WoodlouseEnemyLogic : EnemyLogic
         isAttacking = true;
         woodlouseEnemyMovement.StopChasing();
 
-        StartCoroutine(woodlouseEnemyAttack.Attack(player.position));
+        StartCoroutine(woodlouseEnemyAttack.Attack(enemyReferences.playerTransform.position));
     }
 
     protected override void Death()

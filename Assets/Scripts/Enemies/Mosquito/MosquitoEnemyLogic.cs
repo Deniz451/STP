@@ -1,8 +1,5 @@
-using UnityEngine;
-
 public class MosquitoEnemyLogic : EnemyLogic
 {
-
     private MosquitoEnemyMovement mosquitoEnemyMovement;
     private MosquitoEnemyAttack mosquitoEnemyAttack;
     private MosquitoEnemyHealth mosquitoEnemyHealth;
@@ -35,7 +32,7 @@ public class MosquitoEnemyLogic : EnemyLogic
         isAttacking = true;
         mosquitoEnemyMovement.StopChasing();
 
-        StartCoroutine(mosquitoEnemyAttack.Attack(player.position));
+        StartCoroutine(mosquitoEnemyAttack.Attack(enemyReferences.playerTransform.position));
     }
 
     protected override void Death()
