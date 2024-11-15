@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour, Idamagable
+public class PlayerManager : MonoBehaviour, IDamagable
 {
     [SerializeField] float playerHealth;
     // Start is called before the first frame update

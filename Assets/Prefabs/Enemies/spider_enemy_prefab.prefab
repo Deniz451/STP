@@ -248,8 +248,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 5960343895074407068}
   raycast: {fileID: 2346044328897553318}
-  raycastLine: 1
-  lockOnPosition: 1
+  Raycast: 1
+  LegStickingPosition: 1
+  EndBoneFollowPosition: 1
+  RaycastHitPoint: 1
 --- !u!1 &2805044593953718985
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,8 +523,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 654239258282883510}
   raycast: {fileID: 2731409258441129767}
-  raycastLine: 1
-  lockOnPosition: 1
+  Raycast: 1
+  LegStickingPosition: 1
+  EndBoneFollowPosition: 1
+  RaycastHitPoint: 1
 --- !u!1 &4455623382428785202
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,8 +744,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 8533725920038823853}
   raycast: {fileID: 6741574366021831278}
-  raycastLine: 1
-  lockOnPosition: 1
+  Raycast: 1
+  LegStickingPosition: 1
+  EndBoneFollowPosition: 1
+  RaycastHitPoint: 1
 --- !u!1 &5241562867457599922
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,8 +934,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 8178182567289830343}
   raycast: {fileID: 8851740927660069510}
-  raycastLine: 1
-  lockOnPosition: 1
+  Raycast: 1
+  LegStickingPosition: 1
+  EndBoneFollowPosition: 1
+  RaycastHitPoint: 1
 --- !u!1 &6608799313696588224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,8 +1124,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 6978174618396931452}
   raycast: {fileID: 5256588831549152616}
-  raycastLine: 1
-  lockOnPosition: 1
+  Raycast: 1
+  LegStickingPosition: 1
+  EndBoneFollowPosition: 1
+  RaycastHitPoint: 1
 --- !u!1 &7016272667331066669
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,8 +1283,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 7869914506019811765}
   raycast: {fileID: 6058026738942687503}
-  raycastLine: 1
-  lockOnPosition: 1
+  Raycast: 1
+  LegStickingPosition: 1
+  EndBoneFollowPosition: 1
+  RaycastHitPoint: 1
 --- !u!1 &7439455251685677947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,8 +1411,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 7692436500530270081}
   raycast: {fileID: 1049637132089030901}
-  raycastLine: 1
-  lockOnPosition: 1
+  Raycast: 1
+  LegStickingPosition: 1
+  EndBoneFollowPosition: 1
+  RaycastHitPoint: 1
 --- !u!1 &7466451095719296215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,8 +1578,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 7699473313264676129}
   raycast: {fileID: 751030178925364762}
-  raycastLine: 1
-  lockOnPosition: 1
+  Raycast: 1
+  LegStickingPosition: 1
+  EndBoneFollowPosition: 1
+  RaycastHitPoint: 1
 --- !u!1 &8409328215231922854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1707,6 +1723,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_Name
       value: spider_enemy_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2951354204013437600, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_Materials.Array.data[0]
