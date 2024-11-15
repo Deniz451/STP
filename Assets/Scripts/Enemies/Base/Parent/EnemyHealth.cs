@@ -2,7 +2,7 @@ using System.Collections;
 using System;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IDamagable
 {
     private EnemyReferences enemyReferences;
     public Action OnDeath;
@@ -23,6 +23,12 @@ public class EnemyHealth : MonoBehaviour
     protected virtual void Update()
     {
         if (health <= 0 && !isDead) StartCoroutine(Die());
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0 && !isDead) Die();
     }
 
     public IEnumerator Die()
