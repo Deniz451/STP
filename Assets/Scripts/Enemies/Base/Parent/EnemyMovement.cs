@@ -21,7 +21,7 @@ public abstract class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isChasing)
+        if (isChasing && enemyReferences.playerTransform != null)
         {
             Vector3 moveDir = (enemyReferences.playerTransform.position - transform.position).normalized;
             moveDir.y = 0;

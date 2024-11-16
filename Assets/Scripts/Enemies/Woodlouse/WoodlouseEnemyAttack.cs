@@ -9,7 +9,7 @@ public class WoodlouseEnemyAttack : EnemyAttack
         Debug.Log("Attacked");
 
         yield return new WaitForSeconds(enemyReferences.enemySO.attackCooldown);
-        if (Vector3.Distance(transform.position, enemyReferences.playerTransform.position) <= enemyReferences.enemySO.attackDistance) StartCoroutine(Attack(enemyReferences.playerTransform.position));
+        if (enemyReferences.playerTransform != null && Vector3.Distance(transform.position, enemyReferences.playerTransform.position) <= enemyReferences.enemySO.attackDistance) StartCoroutine(Attack(enemyReferences.playerTransform.position));
 
         OnAttackComplete?.Invoke();
     }

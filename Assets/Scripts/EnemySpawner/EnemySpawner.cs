@@ -30,19 +30,33 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(spawnInterval);
-            Vector3 randomPosition = GetRandomPointInRadius();
             int randEnemy = Random.Range(0, enemyPrefabs.Length);
+            Vector3 randomPosition = GetRandomPointInRadius(randEnemy);
             Instantiate(enemyPrefabs[randEnemy], randomPosition, Quaternion.identity);
+            Debug.Log(randomPosition);
         }
     }
 
-    private Vector3 GetRandomPointInRadius()
+    private Vector3 GetRandomPointInRadius(int enemyType)
     {
         Vector3 centerPosition = playerTransform != null ? playerTransform.position : transform.position;
         while (true)
         {
             Vector2 randomPoint2D = Random.insideUnitCircle * spawnRadius;
-            Vector3 randomPosition = new Vector3(randomPoint2D.x, 0, randomPoint2D.y) + centerPosition;
+            Vector3 randomPosition = new Vector3(randomPoint2D.x, 0, randomPoint2D.y);
+
+            switch (enemyType)
+            {
+                case 0:
+                    randomPosition.y = 0.5f;
+                    break;
+                case 1:
+                    randomPosition.y = 4f;
+                    break;
+                case 2:
+                    randomPosition.y = 1.5f;
+                    break;
+            }
 
             if (Vector3.Distance(randomPosition, centerPosition) >= minSpawnDistance)
             {

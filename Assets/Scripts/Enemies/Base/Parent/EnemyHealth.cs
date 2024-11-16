@@ -51,7 +51,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
     {
         float dissolveProgress = 0f;
 
-        GameObject.Find("body").GetComponent<Renderer>().material = enemyReferences.enemySO.dissolveMaterial;
+        transform.Find("body").GetComponent<Renderer>().material = enemyReferences.enemySO.dissolveMaterial;
 
         while (dissolveProgress < 1f)
         {

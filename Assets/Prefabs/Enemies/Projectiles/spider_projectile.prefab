@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3039757819536195694}
   - component: {fileID: 4070374085011995228}
   - component: {fileID: 8213201866404733300}
+  - component: {fileID: 6354758842428547591}
   - component: {fileID: 6119481481951814561}
   m_Layer: 0
   m_Name: spider_projectile
@@ -106,6 +107,33 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &6354758842428547591
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3665345548286149822}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!114 &6119481481951814561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82bea91786220f043bdac71d089a92df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySO: {fileID: 11400000, guid: 86f6912627f5e7f48bbb10285002775f, type: 2}
   webPlanePrefab: {fileID: 1601077617024828078, guid: 835c13417e302c844bb02302679199ea, type: 3}
-  projectileSpeed: 0.25
+  projectileSpeed: 20
   targetPosition: {x: 0, y: 0, z: 0}

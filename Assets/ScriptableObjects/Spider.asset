@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 20
-  attackDistance: 30
+  attackDistance: 15
   attackDelay: 0.5
   attackCooldown: 5
   projectilePrefab: {fileID: 3665345548286149822, guid: a0c80e561187ab148b77389452fead2f, type: 3}

@@ -22,7 +22,12 @@ public class PlayerManager : MonoBehaviour, IDamagable
         playerHealth -= damage;
         if (playerHealth < 0)
         {
-            Debug.Log("Lol chcipnul jsi");
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }
