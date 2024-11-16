@@ -26,5 +26,6 @@ public class BulletScript : MonoBehaviour
         {
             other.gameObject.GetComponent<IDamagable>().TakeDamage(bulletDamage);
         }
+        Destroy(gameObject);
     }
 }
