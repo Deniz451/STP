@@ -65,7 +65,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
 
     private IEnumerator PlayDeathAnimation()
     {
-        enemyReferences.animator.runtimeAnimatorController = enemyReferences.enemySO.animatorController;
+        //enemyReferences.animator.runtimeAnimatorController = enemyReferences.enemySO.animatorController;
         enemyReferences.animator.SetTrigger("death");
         yield return new WaitForSeconds(0.5f);
     }
