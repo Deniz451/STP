@@ -26,6 +26,9 @@ public class BulletScript : MonoBehaviour
         {
             other.gameObject.GetComponent<IDamagable>().TakeDamage(bulletDamage);
         }
-        Destroy(gameObject);
+        if (!other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
