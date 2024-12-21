@@ -42,7 +42,7 @@ public class ShootingScript : MonoBehaviour
         bullet.transform.position = spawn.position; //Spawn bullet at right position
 
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        if (rb != null) { rb.velocity = spawn.forward * bulletSpeed; }  //Set speed and direction
+        if (rb != null) { rb.velocity = (spawn.forward * -1) * bulletSpeed; }  //Set speed and direction
 
         StartCoroutine(DespawnBullet(bullet, bulletLifetime));  //Start despawn timer
         
