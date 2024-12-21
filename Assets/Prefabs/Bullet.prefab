@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 35
+  bloodEffect: {fileID: 2134894565654225745, guid: 0cee7cbc871258245a9da18c8be36bd4, type: 3}
 --- !u!136 &6364289579906350739
 CapsuleCollider:
   m_ObjectHideFlags: 0

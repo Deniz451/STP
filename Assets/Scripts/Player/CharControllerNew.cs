@@ -50,7 +50,7 @@ public class CharControllerNew : MonoBehaviour
             StartCoroutine(Dash(dashDuration, pushForce, dodgeDirection));
         }
         currentDelay -= Time.deltaTime;
-        if (currentDelay <= 0) { Debug.Log("Dash Ready"); }
+        //if (currentDelay <= 0) { Debug.Log("Dash Ready"); }
     }
 
     IEnumerator Dash(float duration, float force, Vector3 direction)
