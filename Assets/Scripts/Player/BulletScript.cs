@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.VFX;
 
 public class BulletScript : MonoBehaviour
 {
@@ -16,5 +18,11 @@ public class BulletScript : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    IEnumerator ParticleDespawn(GameObject particle)
+    {
+        yield return new WaitForSeconds(45);
+        Destroy(particle);
     }
 }
