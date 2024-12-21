@@ -10,14 +10,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnInterval;
 
 
-    private void Awake()
-    {
-        GameObject.Find("StartBtn").GetComponent<StartBtn>().onGameStart += StartSpawning;
-    }
-
     private void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        StartSpawning();
     }
 
     public void StartSpawning()

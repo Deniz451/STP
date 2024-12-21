@@ -11,7 +11,7 @@ public class CameraLerpToPos : MonoBehaviour
 
     private void Awake()
     {
-        GameObject.Find("StartBtn").GetComponent<StartBtn>().onGameStart += StartMove;
+        //GameObject.Find("StartBtn").GetComponent<StartBtn>().onGameStart += StartMove;
     }
 
     private void Start()

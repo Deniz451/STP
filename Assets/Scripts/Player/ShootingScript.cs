@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ShootingScript : MonoBehaviour
@@ -17,19 +14,18 @@ public class ShootingScript : MonoBehaviour
     int index = 1;
     bool done = true;
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0)&&done) 
+        if (Input.GetMouseButton(0) && done)
         {
             switch (index)
             {
                 case 1:
                     StartCoroutine(ShootBullet(bulletPrefab, attackSpeed, bulletSpawnR));
-                break;
+                    break;
                 case 2:
                     StartCoroutine(ShootBullet(bulletPrefab, attackSpeed, bulletSpawnL));
-                break;
+                    break;
             }
         }
     }
@@ -39,22 +35,21 @@ public class ShootingScript : MonoBehaviour
         done = false;
 
         bullet = Instantiate(bullet);
-        bullet.transform.position = spawn.position; //Spawn bullet at right position
+        bullet.transform.position = spawn.position;
+        bullet.transform.rotation = Quaternion.LookRotation(spawn.forward) * Quaternion.Euler(90, 0, 0);
 
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        if (rb != null) { rb.velocity = spawn.forward * bulletSpeed; }  //Set speed and direction
+        if (rb != null)
+        {
+            rb.velocity = spawn.forward * bulletSpeed;
+        }
 
-        StartCoroutine(DespawnBullet(bullet, bulletLifetime));  //Start despawn timer
-        
-        if(index == 2) { index = 1;} else {index = 2;}     //Set index
+        Destroy(bullet, bulletLifetime);
+
+        index = (index == 2) ? 1 : 2;
 
         yield return new WaitForSeconds(time);
 
         done = true;
-    }
-    IEnumerator DespawnBullet(GameObject bullet, float time)
-    {
-        yield return new WaitForSeconds(time);
-        Destroy(bullet);
     }
 }
