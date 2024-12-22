@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344bb5f51b8a10e42aa63c9352a87ff3, type: 3}
   m_Name: Gun2
   m_EditorClassIdentifier: 
-  gunName: Bazooka lol
+  gunName: Gun2
   damage: 200
   bulletLifetime: 10
   attackDelay: 0.4

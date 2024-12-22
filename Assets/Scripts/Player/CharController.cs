@@ -7,7 +7,6 @@ public class CharController : MonoBehaviour
     private bool isMoving = false;
 
     [SerializeField] private float playerSpeed = 5f;
-    [SerializeField] private float jumpHeight = 1f;
     [SerializeField] private float gravityValue = 9.81f;
     [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private float jumpBufferingTime = 0.2f;

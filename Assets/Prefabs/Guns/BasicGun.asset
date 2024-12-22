@@ -15,7 +15,7 @@ MonoBehaviour:
   gunName: BasicGun
   damage: 10
   bulletLifetime: 6
-  attackDelay: 1.5
+  attackDelay: 0.8
   bulletSpeed: 10
   projectilePrefab: {fileID: 4706352886823050120, guid: f7ce03b3a881c174bb63beda3c82fa44, type: 3}
   moveModifier: 1

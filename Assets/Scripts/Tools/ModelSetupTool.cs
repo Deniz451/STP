@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -208,7 +208,7 @@ public class ModelSetupTool : EditorWindow
             {
                 if ((int)charArr[1] % 2 == 0) zOffset = -0.5f;
                 else zOffset = 0.5f;
-            }*/
+            }
 
             target.transform.position = new(legBones[key].transform.position.x, legBones[key].transform.position.y, legBones[key].transform.position.z); //+ zOffset);
             chainIKConstraint.data.target = target.transform;
@@ -242,4 +242,4 @@ public class ModelSetupTool : EditorWindow
         PrefabUtility.SaveAsPrefabAsset(model, prefabPath);
         Debug.Log($"Prefab saved at: {prefabPath}");
     }
-}
+}*/

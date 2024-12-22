@@ -20,7 +20,7 @@ public class CharRotation : MonoBehaviour
             Vector3 direction = pointToLook - transform.position;
             direction.y = 0;
 
-            direction = direction * -1;
+            //direction = direction * -1;
 
             Debug.DrawRay(transform.position, direction);
 

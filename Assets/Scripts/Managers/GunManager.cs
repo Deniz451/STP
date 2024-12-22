@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunChoose : MonoBehaviour
+public class GunManager : MonoBehaviour
 {
     [SerializeField] GameObject gunAnchor;
     public List<GunSO> guns;        //Musi byt v kazde scene s player kvuli tomuhle listu
@@ -10,7 +10,6 @@ public class GunChoose : MonoBehaviour
     GameObject selectedGun;
     GameObject currentGunLeft;
     GameObject currentGunRight;
-    GameObject gunR;
 
     ShootingScript ss;
 
@@ -51,6 +50,8 @@ public class GunChoose : MonoBehaviour
 
         ss.gunL.transform.parent = GameObject.Find("playerHead").transform;
         ss.gunL.transform.localRotation = Quaternion.Euler(ss.gunL.transform.eulerAngles.x, ss.gunL.transform.eulerAngles.y, 0);        //setuje rotaci z na 0 protoze to tweakovalo
+
+        Debug.Log($"Chosen Gun: {ss.currentGunL}");
     }
     public void SelectGunR()
     {
