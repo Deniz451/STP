@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Prefabs/Bullet2.prefab.meta
 guid: 17978647575992a44b7ec0016503e4fa
+========
+guid: a1c7c00e864c1b543aa23692bd6dda50
+>>>>>>>> Stashed changes:Assets/Prefabs/Guns/BasicGunPrefab.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 using UnityEngine;
 
@@ -60,6 +63,7 @@ public class ShootingScript : MonoBehaviour
             {
                 case 1:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     StartCoroutine(ShootBullet(bulletPrefab, attackSpeed, bulletSpawnR));
                     break;
                 case 2:
@@ -68,6 +72,14 @@ public class ShootingScript : MonoBehaviour
 =======
                     if(currentGunR == null) { currentGunR = defaultGun; }
                     StartCoroutine(ShootBullet(currentGunR, gunR));                             //vola metody pro strileni
+=======
+                    if(currentGunR == null) { currentGunR = defaultGun; }
+                    StartCoroutine(ShootBullet(currentGunR, gunR));                             //vola metody pro strileni
+                break;
+                case 2:
+                    if (currentGunL == null) { currentGunL = defaultGun; }
+                    StartCoroutine(ShootBullet(currentGunL, gunL));
+>>>>>>> Stashed changes
                 break;
                 case 2:
                     if (currentGunL == null) { currentGunL = defaultGun; }
@@ -82,6 +94,7 @@ public class ShootingScript : MonoBehaviour
     {
         done = false;
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         bullet = Instantiate(bullet);
         bullet.transform.position = spawn.position;
@@ -107,13 +120,27 @@ public class ShootingScript : MonoBehaviour
         
         if(index == 2) { index = 1;} else {index = 2;}     //zmeni index
 >>>>>>> Stashed changes
+=======
+        GameObject bullet = Instantiate(gun.projectilePrefab);
+        bullet.transform.position = gunInstance.GetComponentInChildren<Transform>().position; //spawne kulku na spravnym miste
+
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        if (rb != null) { rb.velocity = (gunInstance.GetComponentInChildren<Transform>().up * gun.bulletSpeed); }  //nastavi rychlost a smer (mozna by to chtelo v budoucnu optimalizovat, ale je 5:30 rn :) )
+
+        StartCoroutine(DespawnBullet(bullet, gun.bulletLifetime));  //zapne timer na zniceni
+        
+        if(index == 2) { index = 1;} else {index = 2;}     //zmeni index
+>>>>>>> Stashed changes
 
         yield return new WaitForSeconds(gun.attackDelay);
 
         done = true;
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
     IEnumerator DespawnBullet(GameObject bullet, float time)
     {

@@ -1840,18 +1840,24 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6439788042068114030}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:Assets/Prefabs/Player/playerAlpha.prefab
   - component: {fileID: 869170594655285552}
   - component: {fileID: 5788788962352571471}
   - component: {fileID: 5989314401917179376}
   - component: {fileID: 5569624230908940818}
 =======
+=======
+>>>>>>> Stashed changes
   - component: {fileID: 5989314401917179376}
   - component: {fileID: 5569624230908940818}
   - component: {fileID: 5788788962352571471}
   - component: {fileID: 336201832362080366}
   - component: {fileID: 5610255845012900164}
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes:Assets/Prefabs/Player/player.prefab
+=======
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -1876,6 +1882,7 @@ Transform:
   - {fileID: 7021687084188483863}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:Assets/Prefabs/Player/playerAlpha.prefab
 --- !u!114 &869170594655285552
 MonoBehaviour:
@@ -1915,6 +1922,8 @@ MonoBehaviour:
   bulletLifetime: 10
 =======
 >>>>>>> Stashed changes:Assets/Prefabs/Player/player.prefab
+=======
+>>>>>>> Stashed changes
 --- !u!143 &5989314401917179376
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2031,7 +2040,10 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes:Assets/Prefabs/Player/player.prefab
+=======
+>>>>>>> Stashed changes
 --- !u!1 &8617006720400481542
 GameObject:
   m_ObjectHideFlags: 0
