@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -243,3 +244,4 @@ public class ModelSetupTool : EditorWindow
         Debug.Log($"Prefab saved at: {prefabPath}");
     }
 }
+#endif

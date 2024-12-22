@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.VFX;
-using UnityEngine.Events;
 
 public class ParticleManager : MonoBehaviour
 {

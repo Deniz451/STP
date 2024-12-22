@@ -1,16 +1,4 @@
 using System.Collections;
-<<<<<<< Updated upstream
-=======
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 using UnityEngine;
 
 public class ShootingScript : MonoBehaviour
@@ -20,7 +8,6 @@ public class ShootingScript : MonoBehaviour
     public GameObject GunSpawnL;
 
     [SerializeField] GunSO defaultGun;
-
     [SerializeField] GameObject gunManager;
     GunManager gm;
 
@@ -37,22 +24,23 @@ public class ShootingScript : MonoBehaviour
     private void Start()
     {
         gm = gunManager.GetComponent<GunManager>();
-        if(PlayerPrefs.HasKey("WeaponL") || PlayerPrefs.HasKey("WeaponR"))
+        if (PlayerPrefs.HasKey("WeaponL") || PlayerPrefs.HasKey("WeaponR"))
         {
             savedWeaponL = PlayerPrefs.GetString("WeaponL");
             savedWeaponR = PlayerPrefs.GetString("WeaponR");
-            foreach (GunSO gun in gm.guns)                                              //loadne ulozeny zmeny zbrani pri zapnuti hry
+            foreach (GunSO gun in gm.guns)
             {
-                if (gun.name == savedWeaponL) {currentGunL = gun;}
-                if (gun.name == savedWeaponR) { currentGunR = gun;}
-                if (currentGunL.name == savedWeaponL && currentGunR.name == savedWeaponR) {break;}
+                if (gun.name == savedWeaponL) currentGunL = gun;
+                if (gun.name == savedWeaponR) currentGunR = gun;
+                if (currentGunL.name == savedWeaponL && currentGunR.name == savedWeaponR) break;
             }
         }
 
-        if(currentGunL == null) { currentGunL = defaultGun; } if(currentGunR == null) {currentGunR = defaultGun; }
+        if (currentGunL == null) currentGunL = defaultGun;
+        if (currentGunR == null) currentGunR = defaultGun;
 
-        gunR = GameObject.Instantiate(currentGunR.gunPrefab, GunSpawnR.transform.position, currentGunR.gunRotation);
-        gunL = GameObject.Instantiate(currentGunL.gunPrefab, GunSpawnL.transform.position, currentGunL.gunRotation);        //spawne zbrane do modelu hrace
+        gunR = Instantiate(currentGunR.gunPrefab, GunSpawnR.transform.position, currentGunR.gunRotation);
+        gunL = Instantiate(currentGunL.gunPrefab, GunSpawnL.transform.position, currentGunL.gunRotation);
 
         gunR.transform.parent = gameObject.transform.Find("playerHead");
         gunL.transform.parent = gameObject.transform.Find("playerHead");
@@ -65,39 +53,13 @@ public class ShootingScript : MonoBehaviour
             switch (index)
             {
                 case 1:
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                    StartCoroutine(ShootBullet(bulletPrefab, attackSpeed, bulletSpawnR));
+                    if (currentGunR == null) currentGunR = defaultGun;
+                    StartCoroutine(ShootBullet(currentGunR, gunR));
                     break;
                 case 2:
-                    StartCoroutine(ShootBullet(bulletPrefab, attackSpeed, bulletSpawnL));
+                    if (currentGunL == null) currentGunL = defaultGun;
+                    StartCoroutine(ShootBullet(currentGunL, gunL));
                     break;
-=======
-                    if(currentGunR == null) { currentGunR = defaultGun; }
-                    StartCoroutine(ShootBullet(currentGunR, gunR));                             //vola metody pro strileni
-=======
-                    if(currentGunR == null) { currentGunR = defaultGun; }
-                    StartCoroutine(ShootBullet(currentGunR, gunR));                             //vola metody pro strileni
-=======
-                    if(currentGunR == null) { currentGunR = defaultGun; }
-                    StartCoroutine(ShootBullet(currentGunR, gunR));                             //vola metody pro strileni
-                break;
-                case 2:
-                    if (currentGunL == null) { currentGunL = defaultGun; }
-                    StartCoroutine(ShootBullet(currentGunL, gunL));
->>>>>>> Stashed changes
-                break;
-                case 2:
-                    if (currentGunL == null) { currentGunL = defaultGun; }
-                    StartCoroutine(ShootBullet(currentGunL, gunL));
->>>>>>> Stashed changes
-                break;
-                case 2:
-                    if (currentGunL == null) { currentGunL = defaultGun; }
-                    StartCoroutine(ShootBullet(currentGunL, gunL));
-                break;
->>>>>>> Stashed changes
             }
         }
     }
@@ -106,74 +68,24 @@ public class ShootingScript : MonoBehaviour
     {
         done = false;
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        bullet = Instantiate(bullet);
-        bullet.transform.position = spawn.position;
-        bullet.transform.rotation = Quaternion.LookRotation(spawn.forward) * Quaternion.Euler(90, 0, 0);
+        GameObject bullet = Instantiate(gun.projectilePrefab);
+        bullet.transform.position = gunInstance.GetComponentInChildren<Transform>().position;
 
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.velocity = spawn.forward * bulletSpeed;
-        }
+        if (rb != null) rb.velocity = gunInstance.GetComponentInChildren<Transform>().up * gun.bulletSpeed;
 
-        Destroy(bullet, bulletLifetime);
+        StartCoroutine(DespawnBullet(bullet, gun.bulletLifetime));
 
         index = (index == 2) ? 1 : 2;
-=======
-        GameObject bullet = Instantiate(gun.projectilePrefab);
-        bullet.transform.position = gunInstance.GetComponentInChildren<Transform>().position; //spawne kulku na spravnym miste
 
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        if (rb != null) { rb.velocity = (gunInstance.GetComponentInChildren<Transform>().up * gun.bulletSpeed); }  //nastavi rychlost a smer (mozna by to chtelo v budoucnu optimalizovat, ale je 5:30 rn :) )
-
-        StartCoroutine(DespawnBullet(bullet, gun.bulletLifetime));  //zapne timer na zniceni
-        
-        if(index == 2) { index = 1;} else {index = 2;}     //zmeni index
->>>>>>> Stashed changes
-=======
-        GameObject bullet = Instantiate(gun.projectilePrefab);
-        bullet.transform.position = gunInstance.GetComponentInChildren<Transform>().position; //spawne kulku na spravnym miste
-
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        if (rb != null) { rb.velocity = (gunInstance.GetComponentInChildren<Transform>().up * gun.bulletSpeed); }  //nastavi rychlost a smer (mozna by to chtelo v budoucnu optimalizovat, ale je 5:30 rn :) )
-
-        StartCoroutine(DespawnBullet(bullet, gun.bulletLifetime));  //zapne timer na zniceni
-        
-        if(index == 2) { index = 1;} else {index = 2;}     //zmeni index
->>>>>>> Stashed changes
-
-=======
-        GameObject bullet = Instantiate(gun.projectilePrefab);
-        bullet.transform.position = gunInstance.GetComponentInChildren<Transform>().position; //spawne kulku na spravnym miste
-
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        if (rb != null) { rb.velocity = (gunInstance.GetComponentInChildren<Transform>().up * gun.bulletSpeed); }  //nastavi rychlost a smer (mozna by to chtelo v budoucnu optimalizovat, ale je 5:30 rn :) )
-
-        StartCoroutine(DespawnBullet(bullet, gun.bulletLifetime));  //zapne timer na zniceni
-        
-        if(index == 2) { index = 1;} else {index = 2;}     //zmeni index
-
->>>>>>> Stashed changes
         yield return new WaitForSeconds(gun.attackDelay);
 
         done = true;
     }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
     IEnumerator DespawnBullet(GameObject bullet, float time)
     {
         yield return new WaitForSeconds(time);
         Destroy(bullet);
     }
->>>>>>> Stashed changes
 }
