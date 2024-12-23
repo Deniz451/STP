@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.VFX;
@@ -34,7 +35,6 @@ public class BulletScript : MonoBehaviour
             pm.PlayRandomColor(effect.GetComponentInChildren<VisualEffect>());      //vybere random barvu krve
 
             StartCoroutine(ParticleDespawn(effect));
-
 
         }
         else if (!other.CompareTag("Player") && !other.CompareTag("Ground"))

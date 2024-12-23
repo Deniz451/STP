@@ -10,7 +10,6 @@ public class ShootingScript : MonoBehaviour
     public GameObject GunSpawnL;
 
     [SerializeField] GunSO defaultGun;
-
     [SerializeField] GameObject gunManager;
     GunManager gm;
 
@@ -27,7 +26,7 @@ public class ShootingScript : MonoBehaviour
     private void Start()
     {
         gm = gunManager.GetComponent<GunManager>();
-        if(PlayerPrefs.HasKey("WeaponL") || PlayerPrefs.HasKey("WeaponR"))
+        if (PlayerPrefs.HasKey("WeaponL") || PlayerPrefs.HasKey("WeaponR"))
         {
             savedWeaponL = PlayerPrefs.GetString("WeaponL");
             savedWeaponR = PlayerPrefs.GetString("WeaponR");
@@ -49,8 +48,8 @@ public class ShootingScript : MonoBehaviour
         if (currentGunR.gunPrefab == null) { Debug.LogError("CurrentGunR gunPrefab is not assigned!"); }
         if (GunSpawnR == null) { Debug.LogError("GunSpawnR is not assigned!"); }
 
-        gunR = GameObject.Instantiate(currentGunR.gunPrefab, GunSpawnR.transform.position, currentGunR.gunRotation);
-        gunL = GameObject.Instantiate(currentGunL.gunPrefab, GunSpawnL.transform.position, currentGunL.gunRotation);        //spawne zbrane do modelu hrace
+        gunR = Instantiate(currentGunR.gunPrefab, GunSpawnR.transform.position, currentGunR.gunRotation);
+        gunL = Instantiate(currentGunL.gunPrefab, GunSpawnL.transform.position, currentGunL.gunRotation);
 
         gunR.transform.parent = gameObject.transform.Find("playerHead");
         gunL.transform.parent = gameObject.transform.Find("playerHead");
