@@ -16,7 +16,7 @@ public class GunManager : MonoBehaviour
     int i = 0;
     Quaternion displayRotation = new Quaternion(0.669098794f, 0.281925321f, -0.48636898f, 0.486076236f);
 
-    
+    [SerializeField] GameObject player;
 
     private void Start()
     {
@@ -52,6 +52,10 @@ public class GunManager : MonoBehaviour
         ss.gunL.transform.localRotation = Quaternion.Euler(ss.gunL.transform.eulerAngles.x, ss.gunL.transform.eulerAngles.y, 0);        //setuje rotaci z na 0 protoze to tweakovalo
 
         Debug.Log($"Chosen Gun: {ss.currentGunL}");
+
+        player.GetComponent<CharControllerNew>().enabled = true;
+        player.GetComponentInChildren<CharRotation>().enabled = true;
+        player.GetComponentInChildren<ShootingScript>().enabled = true;
     }
     public void SelectGunR()
     {
@@ -61,6 +65,10 @@ public class GunManager : MonoBehaviour
 
         ss.gunR.transform.parent = GameObject.Find("playerHead").transform;
         ss.gunR.transform.localRotation = Quaternion.Euler(ss.gunR.transform.eulerAngles.x, ss.gunR.transform.eulerAngles.y, 0);        //setuje rotaci z na 0 protoze to tweakovalo
+
+        player.GetComponent<CharControllerNew>().enabled = true;
+        player.GetComponentInChildren<CharRotation>().enabled = true;
+        player.GetComponentInChildren<ShootingScript>().enabled = true;
     }
 
     public void SaveGuns()

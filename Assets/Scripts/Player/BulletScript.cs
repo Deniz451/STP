@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.VFX;
-using System.Collections;
 
 public class BulletScript : MonoBehaviour
 {
