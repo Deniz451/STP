@@ -5,17 +5,25 @@ public class SpiderEnemyAttack : EnemyAttack
 {
     [SerializeField] protected Transform projectileSpawnTransform;
 
-
     public override IEnumerator Attack(Vector3 targetPosition)
     {
-        // waits delay before performing attack
+        // Waits delay before performing attack
         yield return new WaitForSeconds(enemyReferences.enemySO.attackDelay);
+
+        transform.LookAt(enemyReferences.playerTransform.position);
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+
+        // Spawn the projectile
         GameObject webProjectile = Instantiate(enemyReferences.enemySO.projectilePrefab, projectileSpawnTransform.position, Quaternion.identity);
         webProjectile.GetComponent<SpiderProjectile>().targetPosition = targetPosition;
 
+        // Wait another time cooldown
         yield return new WaitForSeconds(enemyReferences.enemySO.attackCooldown);
-        if (enemyReferences.playerTransform != null && Vector3.Distance(transform.position, enemyReferences.playerTransform.position) <= enemyReferences.enemySO.attackDistance) StartCoroutine(Attack(enemyReferences.playerTransform.position));
 
-        OnAttackComplete?.Invoke();
+        // If player still in distance, repeat attack, else invoke attack completion
+        if (enemyReferences.playerTransform != null && Vector3.Distance(transform.position, enemyReferences.playerTransform.position) <= enemyReferences.enemySO.attackDistance) 
+            StartCoroutine(Attack(enemyReferences.playerTransform.position));
+        else
+            OnAttackComplete?.Invoke();
     }
 }

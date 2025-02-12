@@ -22,6 +22,7 @@ public class EnemySO : ScriptableObject
     [Header("Melee Attack")]
     public float dashAttackDuration;
     public float dashAttackForce;
+    public float maxDashSpeed;
 
     [Space(30)]
     [Header("Movement Stats")]

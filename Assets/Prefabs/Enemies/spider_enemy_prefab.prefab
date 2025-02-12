@@ -248,10 +248,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 5960343895074407068}
   raycast: {fileID: 2346044328897553318}
-  Raycast: 1
-  LegStickingPosition: 1
-  EndBoneFollowPosition: 1
-  RaycastHitPoint: 1
+  Raycast: 0
+  LegStickingPosition: 0
+  EndBoneFollowPosition: 0
+  RaycastHitPoint: 0
 --- !u!1 &2805044593953718985
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,10 +523,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 654239258282883510}
   raycast: {fileID: 2731409258441129767}
-  Raycast: 1
-  LegStickingPosition: 1
-  EndBoneFollowPosition: 1
-  RaycastHitPoint: 1
+  Raycast: 0
+  LegStickingPosition: 0
+  EndBoneFollowPosition: 0
+  RaycastHitPoint: 0
 --- !u!1 &4455623382428785202
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,10 +744,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 8533725920038823853}
   raycast: {fileID: 6741574366021831278}
-  Raycast: 1
-  LegStickingPosition: 1
-  EndBoneFollowPosition: 1
-  RaycastHitPoint: 1
+  Raycast: 0
+  LegStickingPosition: 0
+  EndBoneFollowPosition: 0
+  RaycastHitPoint: 0
 --- !u!1 &5241562867457599922
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,10 +934,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 8178182567289830343}
   raycast: {fileID: 8851740927660069510}
-  Raycast: 1
-  LegStickingPosition: 1
-  EndBoneFollowPosition: 1
-  RaycastHitPoint: 1
+  Raycast: 0
+  LegStickingPosition: 0
+  EndBoneFollowPosition: 0
+  RaycastHitPoint: 0
 --- !u!1 &6608799313696588224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,10 +1124,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 6978174618396931452}
   raycast: {fileID: 5256588831549152616}
-  Raycast: 1
-  LegStickingPosition: 1
-  EndBoneFollowPosition: 1
-  RaycastHitPoint: 1
+  Raycast: 0
+  LegStickingPosition: 0
+  EndBoneFollowPosition: 0
+  RaycastHitPoint: 0
 --- !u!1 &7016272667331066669
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,10 +1283,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 7869914506019811765}
   raycast: {fileID: 6058026738942687503}
-  Raycast: 1
-  LegStickingPosition: 1
-  EndBoneFollowPosition: 1
-  RaycastHitPoint: 1
+  Raycast: 0
+  LegStickingPosition: 0
+  EndBoneFollowPosition: 0
+  RaycastHitPoint: 0
 --- !u!1 &7439455251685677947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,10 +1411,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 7692436500530270081}
   raycast: {fileID: 1049637132089030901}
-  Raycast: 1
-  LegStickingPosition: 1
-  EndBoneFollowPosition: 1
-  RaycastHitPoint: 1
+  Raycast: 0
+  LegStickingPosition: 0
+  EndBoneFollowPosition: 0
+  RaycastHitPoint: 0
 --- !u!1 &7466451095719296215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,10 +1578,10 @@ MonoBehaviour:
   speedFactor: 10
   target: {fileID: 7699473313264676129}
   raycast: {fileID: 751030178925364762}
-  Raycast: 1
-  LegStickingPosition: 1
-  EndBoneFollowPosition: 1
-  RaycastHitPoint: 1
+  Raycast: 0
+  LegStickingPosition: 0
+  EndBoneFollowPosition: 0
+  RaycastHitPoint: 0
 --- !u!1 &8409328215231922854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,15 +1666,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -16.440111
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.0031166077
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4.220186
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1791,6 +1791,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
       insertIndex: -1
       addedObject: {fileID: -433538305163309847}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2746853545747490462}
   m_SourcePrefab: {fileID: 100100000, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
 --- !u!1 &802494912735543853 stripped
 GameObject:
@@ -1987,9 +1990,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 4
-  m_CollisionDetection: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!65 &8922505253691575424
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2036,6 +2039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff92221a42dc0e44cbc5a6a19b4854fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rayLength: 7
 --- !u!114 &7006487760087088509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2087,6 +2091,28 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   rb: {fileID: 0}
   animator: {fileID: 0}
+--- !u!195 &2746853545747490462
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8576281376484204628}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!4 &8847862538366666179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 75883555937999046, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
