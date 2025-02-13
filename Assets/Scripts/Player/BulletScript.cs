@@ -21,7 +21,8 @@ public class BulletScript : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            //other.gameObject.GetComponent<IDamagable>().TakeDamage(bulletDamage);
+            other.gameObject.GetComponent<IDamagable>().TakeDamage(bulletDamage);
+            Destroy(gameObject);
 
             Vector3 contact = other.ClosestPoint(transform.position);
             Vector3 direction = -rb.velocity.normalized;                            //najde bod kolize a rotaci smerem odkud priletela kulka
@@ -34,6 +35,7 @@ public class BulletScript : MonoBehaviour
             pm.PlayRandomColor(effect.GetComponentInChildren<VisualEffect>());      //vybere random barvu krve
 
             StartCoroutine(ParticleDespawn(effect));
+
 
         }
         else if (!other.CompareTag("Player") && !other.CompareTag("Ground"))

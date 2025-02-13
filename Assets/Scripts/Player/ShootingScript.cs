@@ -17,6 +17,9 @@ public class ShootingScript : MonoBehaviour
     public GunSO currentGunR;
     public GameObject gunR;
     public GameObject gunL;
+    public Transform spawnL;
+    public Transform spawnR;
+    public Transform headHolder;
 
     int index = 1;
     bool done = true;
@@ -79,14 +82,18 @@ public class ShootingScript : MonoBehaviour
         done = false;
 
         GameObject bullet = Instantiate(gun.projectilePrefab);
-        bullet.transform.position = gunInstance.GetComponentInChildren<Transform>().position; //spawne kulku na spravnym miste
+        bullet.transform.position = (index == 1) ? spawnL.position : spawnR.position;
+
+        Vector3 shootDirection = headHolder.forward.normalized;
+
+        bullet.transform.rotation = Quaternion.LookRotation(Vector3.down, shootDirection);
 
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        if (rb != null) { rb.velocity = (gunInstance.GetComponentInChildren<Transform>().up * -1 * gun.bulletSpeed); }  //nastavi rychlost a smer (mozna by to chtelo v budoucnu optimalizovat, ale je 5:30 rn :) )
+        if (rb != null) rb.velocity = headHolder.forward * gun.bulletSpeed;
 
-        StartCoroutine(DespawnBullet(bullet, gun.bulletLifetime));  //zapne timer na zniceni
-        
-        if(index == 2) { index = 1;} else {index = 2;}     //zmeni index
+        StartCoroutine(DespawnBullet(bullet, gun.bulletLifetime));
+
+        index = (index == 2) ? 1 : 2;
 
         yield return new WaitForSeconds(gun.attackDelay);
 

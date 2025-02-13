@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour, IDamagable
 {
     [SerializeField] float playerHealth;
+    public GameObject deathPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,7 @@ public class PlayerManager : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        Destroy(gameObject);
+        deathPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 }

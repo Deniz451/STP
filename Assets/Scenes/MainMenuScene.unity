@@ -395,7 +395,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab5ae38b30b46f40927d259b9334317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraController: {fileID: 1626278279}
   outliner: {fileID: 2100000, guid: 13163c4d4cf79e74ea82cfa9c81b5fe0, type: 2}
+  cameraPos: 2
+  allParts:
+  - {fileID: 117318830}
+  - {fileID: 1182963069}
+  btns:
+  - {fileID: 1677397222}
+  - {fileID: 1391873121}
+  availableParts:
+  - {fileID: 7436629818804917466, guid: a1c7c00e864c1b543aa23692bd6dda50, type: 3}
+  - {fileID: 1886825001760052226, guid: 3aac19d00e5209a439f92c64815d8a1e, type: 3}
 --- !u!65 &117318827
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -417,6 +428,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.04088194, y: 0.10806808, z: 0.030550526}
   m_Center: {x: 0.000000014901161, y: 0, z: -0.000000014901161}
+--- !u!4 &117318830 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7824753648676844136, guid: a4480ecaf95f62e44b3dbe08ad5cb4a7, type: 3}
+  m_PrefabInstance: {fileID: 9380457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &161431118 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7747293622121525087, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}
@@ -1769,7 +1785,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab5ae38b30b46f40927d259b9334317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraController: {fileID: 1626278279}
   outliner: {fileID: 2100000, guid: 13163c4d4cf79e74ea82cfa9c81b5fe0, type: 2}
+  cameraPos: 3
+  allParts:
+  - {fileID: 117318830}
+  - {fileID: 1182963069}
+  btns:
+  - {fileID: 1677397222}
+  - {fileID: 1391873121}
+  availableParts:
+  - {fileID: 7436629818804917466, guid: a1c7c00e864c1b543aa23692bd6dda50, type: 3}
+  - {fileID: 1886825001760052226, guid: 3aac19d00e5209a439f92c64815d8a1e, type: 3}
 --- !u!65 &1182963066
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1791,6 +1818,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.04088192, y: 0.10641351, z: 0.030550532}
   m_Center: {x: 9.313228e-10, y: -0.0000000018626451, z: -0.000000014901161}
+--- !u!4 &1182963069 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3274006528333456403, guid: a4480ecaf95f62e44b3dbe08ad5cb4a7, type: 3}
+  m_PrefabInstance: {fileID: 9380457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1189463964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7236869174330588065, guid: e1187ec8b7efddf47801f18ca0d0f252, type: 3}

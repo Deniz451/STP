@@ -7,18 +7,17 @@ public class EnemySpawner : MonoBehaviour
 {
     private Transform playerTransform;
     [SerializeField] private GameObject[] enemyPrefabs;
-    [SerializeField] private float spawnRadius;
-    [SerializeField] private float minSpawnDistance;
-    [SerializeField] private float spawnInterval;
+    [SerializeField] private float spawnRadius = 10f;
+    [SerializeField] private float minSpawnDistance = 3f;
+    [SerializeField] private float spawnInterval = 1f;
     [SerializeField] private TextMeshProUGUI waveText;
 
     private int currentWave = 0;
-    private int enemiesToSpawn;
     private List<GameObject> activeEnemies = new List<GameObject>();
 
     private void Start()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
         StartCoroutine(SpawnWaves());
     }
 
@@ -29,8 +28,8 @@ public class EnemySpawner : MonoBehaviour
             currentWave++;
             DisplayWaveText();
 
-            enemiesToSpawn = Mathf.FloorToInt(currentWave * 1.5f + 5);
-            yield return StartCoroutine(SpawnWaveEnemies());
+            int enemiesToSpawn = Mathf.FloorToInt(currentWave * 1.5f + 5);
+            yield return StartCoroutine(SpawnWaveEnemies(enemiesToSpawn));
 
             yield return new WaitUntil(() => activeEnemies.Count == 0);
         }
@@ -42,12 +41,13 @@ public class EnemySpawner : MonoBehaviour
         waveText.gameObject.SetActive(true);
     }
 
-    private IEnumerator SpawnWaveEnemies()
+    private IEnumerator SpawnWaveEnemies(int enemiesToSpawn)
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            int enemyType = GetEnemyTypeForWave(currentWave);
-            Vector3 spawnPosition = GetRandomPointInRadius(enemyType);
+            int enemyType = Random.Range(0, enemyPrefabs.Length); // Pick a random enemy type
+            Vector3 spawnPosition = GetRandomPointInRadius();
+
             GameObject enemy = Instantiate(enemyPrefabs[enemyType], spawnPosition, Quaternion.identity);
             activeEnemies.Add(enemy);
 
@@ -57,40 +57,18 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private int GetEnemyTypeForWave(int wave)
+    private Vector3 GetRandomPointInRadius()
     {
-        float randomValue = Random.Range(0f, 1f);
+        Vector3 center = playerTransform ? playerTransform.position : transform.position;
+        Vector3 spawnPosition;
 
-        if (wave >= 10 && randomValue > 0.5f) return 2;
-        if (wave >= 5 && randomValue > 0.3f) return 1;
-        return 0;
-    }
-
-    private Vector3 GetRandomPointInRadius(int enemyType)
-    {
-        Vector3 centerPosition = playerTransform != null ? playerTransform.position : transform.position;
-        while (true)
+        do
         {
-            Vector2 randomPoint2D = Random.insideUnitCircle * spawnRadius;
-            Vector3 randomPosition = new Vector3(randomPoint2D.x, 0, randomPoint2D.y);
-
-            switch (enemyType)
-            {
-                case 0:
-                    randomPosition.y = 0.5f;
-                    break;
-                case 1:
-                    randomPosition.y = 4f;
-                    break;
-                case 2:
-                    randomPosition.y = 1.5f;
-                    break;
-            }
-
-            if (Vector3.Distance(randomPosition, centerPosition) >= minSpawnDistance)
-            {
-                return randomPosition;
-            }
+            Vector2 randomCircle = Random.insideUnitCircle * spawnRadius;
+            spawnPosition = new Vector3(center.x + randomCircle.x, 0, center.z + randomCircle.y);
         }
+        while (Vector3.Distance(spawnPosition, center) < minSpawnDistance); // Avoid spawning too close
+
+        return spawnPosition;
     }
 }
