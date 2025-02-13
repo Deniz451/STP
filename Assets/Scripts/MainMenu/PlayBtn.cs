@@ -5,13 +5,19 @@ public class PlayBtn : MonoBehaviour
 {
     public GameObject bg;
     public Animator bgAnimator;
-    public Animator cameraAnimator;
+    public CameraController cameraController;
     public GameObject GunL;
     public GameObject GunR;
 
 
+    private void Start()
+    {
+        cameraController = GameObject.Find("cameraController").GetComponent<CameraController>();
+    }
+
     public void Play()
     {
+        bgAnimator.enabled = true;
         bgAnimator.Play("main_menu_transition");
         StartCoroutine(PlayDelayedAnim());
         bg.GetComponent<BackgroundRotation>().enabled = false;
@@ -22,6 +28,6 @@ public class PlayBtn : MonoBehaviour
     IEnumerator PlayDelayedAnim()
     {
         yield return new WaitForSeconds(0.5f);
-        cameraAnimator.Play("main_menu_camera_transition");
+        cameraController.LerpCameraPos(2, CameraController.CameraPoints.PartSelection);
     }
 }
