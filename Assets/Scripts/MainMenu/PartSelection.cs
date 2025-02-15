@@ -39,13 +39,6 @@ public class PartSelection : MonoBehaviour
         InstantiateGun(gunLHolder, selectedWeaponsSO.gunL.gunName);
         InstantiateGun(gunRHolder, selectedWeaponsSO.gunR.gunName);
 
-        parts = FindObjectsOfType<SelectablePart>();
-
-        foreach (var part in parts)
-        {
-            part.clicked += PreviewParts;
-        }
-
         playBtn.GetComponent<PlayBtn>().PlayPressed += EnableGunColliders;
         backBtn.GetComponent<BackBtn>().BackPressed += DisableGunColliders;
     }
@@ -65,7 +58,7 @@ public class PartSelection : MonoBehaviour
         gun.GetComponent<BoxCollider>().enabled = false;
         gun.AddComponent<SelectablePart>();
         gun.GetComponent<SelectablePart>().outliner = outlineMAT;
-
+        gun.GetComponent<SelectablePart>().clicked += PreviewParts;
 
         if (holder == gunLHolder) currentLGun = gun.gameObject;
         else currentRGun = gun.gameObject;
@@ -108,20 +101,20 @@ public class PartSelection : MonoBehaviour
         }
         else
         {
-            Destroy(currentLGun);
+            Destroy(currentRGun);
             Destroy(previewGun);
 
             if (selectedWeaponsSO.gunR == gun1)
             {
                 selectedWeaponsSO.gunR = gun2;
-                InstantiateGun(gunLHolder, selectedWeaponsSO.gunR.gunName);
-                InstantiatePreviewGun(gunLPreview, "Gun1");
+                InstantiateGun(gunRHolder, selectedWeaponsSO.gunR.gunName);
+                InstantiatePreviewGun(gunRPreview, "Gun1");
             }
             else
             {
                 selectedWeaponsSO.gunR = gun1;
-                InstantiateGun(gunLHolder, selectedWeaponsSO.gunR.gunName);
-                InstantiatePreviewGun(gunLPreview, "Gun2");
+                InstantiateGun(gunRHolder, selectedWeaponsSO.gunR.gunName);
+                InstantiatePreviewGun(gunRPreview, "Gun2");
             }
         }
     }
