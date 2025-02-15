@@ -38,8 +38,16 @@ public class WoodlouseEnemyAttack : EnemyAttack
         yield return new WaitForSeconds(enemyReferences.enemySO.attackCooldown);
 
         if (enemyReferences.playerTransform != null && Vector3.Distance(transform.position, enemyReferences.playerTransform.position) <= enemyReferences.enemySO.attackDistance) 
-            StartCoroutine(Attack(enemyReferences.playerTransform.position));
+            StartCoroutine(Attack(enemyReferences.playerTransform.position + new Vector3(-3.6f, 2.2f, 0f)));
         else
             OnAttackComplete?.Invoke();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<IDamagable>().TakeDamage(enemyReferences.enemySO.damage);
+        }
     }
 }

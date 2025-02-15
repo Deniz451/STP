@@ -22,7 +22,7 @@ public class SpiderEnemyAttack : EnemyAttack
 
         // If player still in distance, repeat attack, else invoke attack completion
         if (enemyReferences.playerTransform != null && Vector3.Distance(transform.position, enemyReferences.playerTransform.position) <= enemyReferences.enemySO.attackDistance) 
-            StartCoroutine(Attack(enemyReferences.playerTransform.position));
+            StartCoroutine(Attack(enemyReferences.playerTransform.position + new Vector3(-3.6f, 2.2f, 0f)));
         else
             OnAttackComplete?.Invoke();
     }

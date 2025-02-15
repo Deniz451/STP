@@ -59,7 +59,6 @@ public class CharControllerNew : MonoBehaviour
         rb.isKinematic = false;
         rb.useGravity = false;  // Disable gravity
 
-        Debug.Log("Dash started");
         rb.velocity = Vector3.zero;  // Reset velocity
         rb.AddForce(direction * force, ForceMode.Impulse);  // Apply dash force
 

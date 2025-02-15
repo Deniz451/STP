@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -77,3 +77,4 @@ public class GunManager : MonoBehaviour
         PlayerPrefs.SetString("WeaponR", ss.currentGunR.name);          //musi se callnout pred menenim scen
     }
 }
+*/

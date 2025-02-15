@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 344bb5f51b8a10e42aa63c9352a87ff3, type: 3}
-  m_Name: BasicGun
+  m_Name: Gun1
   m_EditorClassIdentifier: 
-  gunName: BasicGun
+  gunName: Gun1
   damage: 10
   bulletLifetime: 6
   attackDelay: 0.8

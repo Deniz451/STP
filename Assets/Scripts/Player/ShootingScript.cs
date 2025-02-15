@@ -1,61 +1,27 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShootingScript : MonoBehaviour
 {
-    public GameObject GunSpawnR;
-    public GameObject GunSpawnL;
+    public Transform gunRHolder;
+    public Transform gunLHolder;
+    public Transform bulletSpawnL;
+    public Transform bulletSpawnR;
 
-    [SerializeField] GunSO defaultGun;
-    [SerializeField] GameObject gunManager;
-    GunManager gm;
-
-    public GunSO currentGunL;
-    public GunSO currentGunR;
     public GameObject gunR;
     public GameObject gunL;
-    public Transform spawnL;
-    public Transform spawnR;
-    public Transform headHolder;
 
-    int index = 1;
-    bool done = true;
-    string savedWeaponL;
-    string savedWeaponR;
+    public Transform headHolder;
+    public SelectedWeaponsSO selectedWeaponsSO;
+
+    private int index = 1;
+    private bool done = true;
 
     private void Start()
     {
-        gm = gunManager.GetComponent<GunManager>();
-        if (PlayerPrefs.HasKey("WeaponL") || PlayerPrefs.HasKey("WeaponR"))
-        {
-            savedWeaponL = PlayerPrefs.GetString("WeaponL");
-            savedWeaponR = PlayerPrefs.GetString("WeaponR");
-
-            foreach (GunSO gun in gm.guns)                                              //loadne ulozeny zmeny zbrani pri zapnuti hry
-            {
-                if (gun == null) { Debug.LogWarning("One of the guns in GunManager is null."); continue; }
-
-                if (gun.name == savedWeaponL) {currentGunL = gun;}
-                if (gun.name == savedWeaponR) { currentGunR = gun;}
-            }
-        }
-
-        if(currentGunL == null) { currentGunL = defaultGun; } 
-        if(currentGunR == null) { currentGunR = defaultGun; }
-
-        Debug.Log($"Chosen gun L: {currentGunL.name}, gun R: {currentGunR.name}");
-
-        if (currentGunR.gunPrefab == null) { Debug.LogError("CurrentGunR gunPrefab is not assigned!"); }
-        if (GunSpawnR == null) { Debug.LogError("GunSpawnR is not assigned!"); }
-
-        gunR = Instantiate(currentGunR.gunPrefab, GunSpawnR.transform.position, currentGunR.gunRotation);
-        gunL = Instantiate(currentGunL.gunPrefab, GunSpawnL.transform.position, currentGunL.gunRotation);
-
-        gunR.transform.parent = gameObject.transform.Find("playerHead");
-        gunL.transform.parent = gameObject.transform.Find("playerHead");
+        // Instantiate guns and assign to variables
+        gunL = Instantiate(selectedWeaponsSO.gunL.gunPrefab, gunLHolder);
+        gunR = Instantiate(selectedWeaponsSO.gunR.gunPrefab, gunRHolder);
     }
 
     void Update()
@@ -65,13 +31,10 @@ public class ShootingScript : MonoBehaviour
             switch (index)
             {
                 case 1:
-
-                    if (currentGunR == null) { currentGunR = defaultGun; }
-                    StartCoroutine(ShootBullet(currentGunR, gunR));
+                    StartCoroutine(ShootBullet(selectedWeaponsSO.gunR, gunR));
                     break;
                 case 2:
-                    if (currentGunL == null) { currentGunL = defaultGun; }
-                    StartCoroutine(ShootBullet(currentGunL, gunL));
+                    StartCoroutine(ShootBullet(selectedWeaponsSO.gunL, gunL));
                     break;
             }
         }
@@ -81,20 +44,25 @@ public class ShootingScript : MonoBehaviour
     {
         done = false;
 
+        // Create bullet and set spawn position based on the current gun
         GameObject bullet = Instantiate(gun.projectilePrefab);
-        bullet.transform.position = (index == 1) ? spawnL.position : spawnR.position;
+        bullet.transform.position = (index == 1) ? bulletSpawnR.position : bulletSpawnL.position;
 
+        // Set bullet direction
         Vector3 shootDirection = headHolder.forward.normalized;
-
         bullet.transform.rotation = Quaternion.LookRotation(Vector3.down, shootDirection);
 
+        // Add velocity to the bullet
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null) rb.velocity = headHolder.forward * gun.bulletSpeed;
 
+        // Handle bullet despawning
         StartCoroutine(DespawnBullet(bullet, gun.bulletLifetime));
 
+        // Alternate the gun for the next shot
         index = (index == 2) ? 1 : 2;
 
+        // Delay between shots
         yield return new WaitForSeconds(gun.attackDelay);
 
         done = true;

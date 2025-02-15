@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class BackBtn : MonoBehaviour
     public GameObject bg;
     private Animator bgAnimator;
     private BackgroundRotation bgRotation;
+
+    public Action BackPressed;
 
 
     private void Start()
@@ -20,6 +23,7 @@ public class BackBtn : MonoBehaviour
     {
         StartCoroutine(PlayAnimationBackward("main_menu_transition"));
         cameraController.LerpCameraPos(2, CameraController.CameraPoints.Default);
+        BackPressed.Invoke();
     }
 
     IEnumerator PlayAnimationBackward(string animationName)

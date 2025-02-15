@@ -34,7 +34,7 @@ public class SpiderEnemyLogic : EnemyLogic
         isAttacking = true;
         spiderEnemyMovement.StopChasing();
 
-        StartCoroutine(spiderEnemyAttack.Attack(enemyReferences.playerTransform.position));
+        StartCoroutine(spiderEnemyAttack.Attack(enemyReferences.playerTransform.position + new Vector3(-3.6f, 2.2f, 0f)));
     }
 
     protected override void Death()

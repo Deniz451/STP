@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 35
-  bloodEffect: {fileID: 0}
+  bloodEffect: {fileID: 2134894565654225745, guid: 0cee7cbc871258245a9da18c8be36bd4, type: 3}
 --- !u!1 &6628357424549180910
 GameObject:
   m_ObjectHideFlags: 0

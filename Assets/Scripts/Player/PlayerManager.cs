@@ -6,17 +6,7 @@ public class PlayerManager : MonoBehaviour, IDamagable
 {
     [SerializeField] float playerHealth;
     public GameObject deathPanel;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject tutorialTxt;
 
     public void TakeDamage(float damage)
     {
@@ -30,6 +20,7 @@ public class PlayerManager : MonoBehaviour, IDamagable
     private void Die()
     {
         deathPanel.SetActive(true);
+        tutorialTxt.SetActive(false);
         Time.timeScale = 0f;
     }
 }

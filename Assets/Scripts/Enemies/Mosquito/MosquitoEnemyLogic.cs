@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class MosquitoEnemyLogic : EnemyLogic
 {
     private MosquitoEnemyMovement mosquitoEnemyMovement;
@@ -32,7 +34,7 @@ public class MosquitoEnemyLogic : EnemyLogic
         isAttacking = true;
         mosquitoEnemyMovement.StopChasing();
 
-        StartCoroutine(mosquitoEnemyAttack.Attack(enemyReferences.playerTransform.position));
+        StartCoroutine(mosquitoEnemyAttack.Attack(enemyReferences.playerTransform.position + new Vector3(-3.6f, 2.2f, 0f)));
     }
 
     protected override void Death()

@@ -17,7 +17,7 @@ MonoBehaviour:
   bulletLifetime: 10
   attackDelay: 0.4
   bulletSpeed: 10
-  projectilePrefab: {fileID: 4706352886823050120, guid: f7ce03b3a881c174bb63beda3c82fa44, type: 3}
+  projectilePrefab: {fileID: 5709634828161644703, guid: 17978647575992a44b7ec0016503e4fa, type: 3}
   moveModifier: 1
   gunIcon: {fileID: 0}
   gunPrefab: {fileID: 1886825001760052226, guid: 3aac19d00e5209a439f92c64815d8a1e, type: 3}

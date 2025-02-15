@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,8 +7,8 @@ public class PlayBtn : MonoBehaviour
     public GameObject bg;
     public Animator bgAnimator;
     public CameraController cameraController;
-    public GameObject GunL;
-    public GameObject GunR;
+
+    public Action PlayPressed;
 
 
     private void Start()
@@ -21,8 +22,8 @@ public class PlayBtn : MonoBehaviour
         bgAnimator.Play("main_menu_transition");
         StartCoroutine(PlayDelayedAnim());
         bg.GetComponent<BackgroundRotation>().enabled = false;
-        GunL.GetComponent<BoxCollider>().enabled = true;
-        GunR.GetComponent<BoxCollider>().enabled = true;
+
+        PlayPressed.Invoke();
     }
 
     IEnumerator PlayDelayedAnim()
