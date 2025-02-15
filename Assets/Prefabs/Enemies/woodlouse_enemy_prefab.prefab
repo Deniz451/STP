@@ -2787,15 +2787,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f862317e34437f34a954292e3ef8dbb1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.586052
+      value: 4.5743575
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f862317e34437f34a954292e3ef8dbb1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000023841858
+      value: 1.59
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f862317e34437f34a954292e3ef8dbb1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.1125987
+      value: 13.871155
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f862317e34437f34a954292e3ef8dbb1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2880,9 +2880,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f862317e34437f34a954292e3ef8dbb1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2373245177695419203}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f862317e34437f34a954292e3ef8dbb1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3294617916857629}
   m_SourcePrefab: {fileID: 100100000, guid: f862317e34437f34a954292e3ef8dbb1, type: 3}
 --- !u!4 &4512548751915159 stripped
 Transform:
@@ -3457,18 +3454,6 @@ NavMeshAgent:
   m_BaseOffset: 3.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3294617916857629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6178316966672508253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49579d56458739940ba8ede4454f6152, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &6506928809191033767 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 230213662417343403, guid: f862317e34437f34a954292e3ef8dbb1, type: 3}
