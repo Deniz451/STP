@@ -22,3 +22,4 @@ MonoBehaviour:
   gunIcon: {fileID: 0}
   gunPrefab: {fileID: 7436629818804917466, guid: a1c7c00e864c1b543aa23692bd6dda50, type: 3}
   gunRotation: {x: -0.7069834, y: 0, z: 0, w: 0.70723015}
+  fire: {fileID: 8300000, guid: 5a22d102812d8fa469cca65418c67839, type: 3}

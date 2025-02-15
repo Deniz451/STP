@@ -33,6 +33,10 @@ public class EnemySO : ScriptableObject
     public Material dissolveMaterial;
     public float dissolveDuration;
 
+    [Space(30)]
+    [Header("Audio")]
+    public AudioClip hit;
+
     /*[Space(30)]
     [Header("Animator")]
     public AnimatorController animatorController;*/

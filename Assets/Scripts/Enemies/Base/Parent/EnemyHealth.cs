@@ -28,7 +28,9 @@ public class EnemyHealth : MonoBehaviour, IDamagable
     public void TakeDamage(float damage)
     {
         health -= damage;
-        if (health <= 0 && !isDead) Die();
+        SoundManagerSO.PlaySFXClip(enemyReferences.enemySO.hit, transform.position, 0.5f);
+        if (health <= 0 && !isDead) 
+            StartCoroutine(Die());
     }
 
     public IEnumerator Die()

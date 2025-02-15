@@ -26,4 +26,8 @@ public class GunSO : ScriptableObject
     public Sprite gunIcon;
     public GameObject gunPrefab;
     public Quaternion gunRotation;
+
+    [Space(30)]
+    [Header("Audio")]
+    public AudioClip fire;
 }
