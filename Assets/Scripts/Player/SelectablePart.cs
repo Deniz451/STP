@@ -18,7 +18,7 @@ public class SelectablePart : MonoBehaviour
 
     private void OnMouseDown()
     {
-        clicked.Invoke(this);
+        clicked?.Invoke(this);
     }
 
     private void OnMouseEnter()

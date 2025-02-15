@@ -25,8 +25,8 @@ public class PartSelection : MonoBehaviour
 
     public Material outlineMAT;
 
-    private bool isPreviewing = false;
-    private bool isPreviewingLeft = false;
+    public bool isPreviewing = false;
+    public bool isPreviewingLeft = false;
 
     public GunSO gun1;
     public GunSO gun2;
@@ -90,30 +90,39 @@ public class PartSelection : MonoBehaviour
     {
         if (isPreviewingLeft)
         {
-            if (part.gameObject == gunPrefabs[0])
-                selectedWeaponsSO.gunL = gun1;
-            else
-                selectedWeaponsSO.gunL = gun2;
-
             Destroy(currentLGun);
             Destroy(previewGun);
 
-            InstantiateGun(gunLHolder, selectedWeaponsSO.gunL.gunName);
-            InstantiatePreviewGun(gunLPreview, "Gun1");
-
+            if (selectedWeaponsSO.gunL == gun1)
+            {
+                selectedWeaponsSO.gunL = gun2;
+                InstantiateGun(gunLHolder, selectedWeaponsSO.gunL.gunName);
+                InstantiatePreviewGun(gunLPreview, "Gun1");
+            }
+            else
+            {
+                selectedWeaponsSO.gunL = gun1;
+                InstantiateGun(gunLHolder, selectedWeaponsSO.gunL.gunName);
+                InstantiatePreviewGun(gunLPreview, "Gun2");
+            }
         }
         else
         {
-            if (part.gameObject == gunPrefabs[0])
-                selectedWeaponsSO.gunR = gun1;
-            else
-                selectedWeaponsSO.gunR = gun2;
-
             Destroy(currentLGun);
             Destroy(previewGun);
 
-            InstantiateGun(gunLHolder, selectedWeaponsSO.gunL.gunName);
-            InstantiatePreviewGun(gunLPreview, "Gun2");
+            if (selectedWeaponsSO.gunR == gun1)
+            {
+                selectedWeaponsSO.gunR = gun2;
+                InstantiateGun(gunLHolder, selectedWeaponsSO.gunR.gunName);
+                InstantiatePreviewGun(gunLPreview, "Gun1");
+            }
+            else
+            {
+                selectedWeaponsSO.gunR = gun1;
+                InstantiateGun(gunLHolder, selectedWeaponsSO.gunR.gunName);
+                InstantiatePreviewGun(gunLPreview, "Gun2");
+            }
         }
     }
 

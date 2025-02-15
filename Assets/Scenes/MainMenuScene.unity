@@ -842,6 +842,8 @@ MonoBehaviour:
   launchBtn: {fileID: 1391873121}
   cameraController: {fileID: 1626278279}
   outlineMAT: {fileID: 2100000, guid: 13163c4d4cf79e74ea82cfa9c81b5fe0, type: 2}
+  isPreviewing: 0
+  isPreviewingLeft: 0
   gun1: {fileID: 11400000, guid: 6978befd0ef4cb748802a7ef546983d0, type: 2}
   gun2: {fileID: 11400000, guid: c0a612037237ddc4080d11e8c4195e38, type: 2}
   hintTxt: {fileID: 2005475046}

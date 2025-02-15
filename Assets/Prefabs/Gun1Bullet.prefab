@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5161456312557407589}
   - component: {fileID: -4884692997286165847}
   m_Layer: 0
-  m_Name: Bullet2
+  m_Name: Gun1Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3fb7692b1b238b43b4e573c6bfa0cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 35
+  bulletDamage: 20
   bloodEffect: {fileID: 2134894565654225745, guid: 0cee7cbc871258245a9da18c8be36bd4, type: 3}
 --- !u!1 &6628357424549180910
 GameObject:

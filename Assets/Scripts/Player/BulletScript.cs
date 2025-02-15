@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.VFX;
 
 public class BulletScript : MonoBehaviour
@@ -47,7 +46,7 @@ public class BulletScript : MonoBehaviour
 
     IEnumerator ParticleDespawn(GameObject particle)
     {
-        yield return new WaitForSeconds(45);
+        yield return new WaitForSeconds(15);
         Destroy(particle);
     }
 }
