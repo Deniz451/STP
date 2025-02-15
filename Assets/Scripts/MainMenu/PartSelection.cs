@@ -31,6 +31,8 @@ public class PartSelection : MonoBehaviour
     public GunSO gun1;
     public GunSO gun2;
 
+    public GameObject hintTxt;
+
 
     private void Start()
     {
@@ -120,6 +122,8 @@ public class PartSelection : MonoBehaviour
     {
         isPreviewing = true;
 
+        hintTxt.SetActive(true);
+
         if (previewGun != null)
             Destroy(previewGun);
 
@@ -157,6 +161,8 @@ public class PartSelection : MonoBehaviour
     private void ExitPreview()
     {
         isPreviewing = false;
+
+        hintTxt.SetActive(false);
 
         Destroy(previewGun);
 
