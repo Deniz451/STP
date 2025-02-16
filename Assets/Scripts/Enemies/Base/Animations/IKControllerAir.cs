@@ -2,43 +2,29 @@ using UnityEngine;
 
 public class IKControllerAir : MonoBehaviour
 {
-    [SerializeField] private Transform parentObject;
-    [SerializeField] private float distanceCap;
-    [SerializeField] private float followSpeed;
-    [SerializeField] private float returnSpeed;
-    [SerializeField] private float distanceFactor;
-    private Vector3 legVelocity;
-    private Vector3 originalLegPosition;
-    private Vector3 lastParentPosition;
-    private bool parentChangedPos = false;
+    public Transform target;
+    public Rigidbody rb;
+    public float maxOffset = 2f; // Max distance from target
+    public float returnSpeed = 2f; // Speed of returning to target position
 
+    private Vector3 offset;
 
     void Start()
     {
-        originalLegPosition = transform.localPosition;
-        lastParentPosition = parentObject.position;
+        if (!target) Debug.LogError("Target not assigned.");
+        if (!rb) Debug.LogError("Rigidbody not assigned.");
+        offset = transform.position - target.position;
     }
 
     void Update()
     {
-        if (parentObject.position != lastParentPosition)
-        {
-            parentChangedPos = true;
-            lastParentPosition = parentObject.position;
-        }
-        else parentChangedPos = false;
+        if (!target || !rb) return;
 
-        if (parentChangedPos && Vector3.Distance(transform.position, parentObject.position) < distanceCap)
-        {
-            Vector3 targetPosition = transform.position - parentObject.transform.forward * distanceFactor;
-            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref legVelocity, 1 / followSpeed);
-        }
-        else
-        {
-            Vector3 returnPosition = parentObject.TransformPoint(originalLegPosition);
-            transform.position = Vector3.SmoothDamp(transform.position, returnPosition, ref legVelocity, 1 / returnSpeed);
-        }
+        float velocityMagnitude = rb.velocity.magnitude;
+        Vector3 directionAway = (transform.position - target.position).normalized;
+        Vector3 dynamicOffset = directionAway * Mathf.Clamp(velocityMagnitude, 0, maxOffset);
 
-        parentChangedPos = false;
+        Vector3 desiredPosition = target.position + offset + dynamicOffset;
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, returnSpeed * Time.deltaTime);
     }
 }
