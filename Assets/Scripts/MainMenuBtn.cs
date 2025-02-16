@@ -5,6 +5,6 @@ public class MainMenuBtn : MonoBehaviour
 {
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadSceneAsync(0);
     }
 }

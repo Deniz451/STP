@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CharControllerNew : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class CharControllerNew : MonoBehaviour
     [SerializeField] float playerSpeed = 5f;
     [SerializeField] float pushForce = 8f;
     [SerializeField] float dashDuration = 0.3f;
+    public Slider dashBar;
     float gravityValue = 9.81f;
     float currentDelay = 0;
 
@@ -43,13 +45,14 @@ public class CharControllerNew : MonoBehaviour
             controller.Move(moveDirection * Time.deltaTime);
         }
 
-        if (Input.GetButtonDown("Jump") && currentDelay <= 0)
+        if (Input.GetKeyDown(KeyCode.Space) && currentDelay <= 0)
         {
             currentDelay = dashDelay;
             Vector3 dodgeDirection = currentMoveDirection != Vector3.zero ? currentMoveDirection.normalized : Vector3.forward;
             StartCoroutine(Dash(dashDuration, pushForce, dodgeDirection));
         }
         currentDelay -= Time.deltaTime;
+        dashBar.value = dashDelay - currentDelay;
         //if (currentDelay <= 0) { Debug.Log("Dash Ready"); }
     }
 
