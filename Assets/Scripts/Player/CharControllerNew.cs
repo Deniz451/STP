@@ -22,6 +22,7 @@ public class CharControllerNew : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        controller.enabled = true;
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;  // Ensure Rigidbody doesn't interfere initially
     }
