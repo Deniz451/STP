@@ -1,0 +1,4 @@
+repository "procedural leg animation@unity_D90B9F41BD6F7D1EC1F8@cloud"
+  path "/"
+    br "/main"
+    co "/main"
