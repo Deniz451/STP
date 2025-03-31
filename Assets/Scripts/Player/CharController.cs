@@ -2,94 +2,32 @@ using UnityEngine;
 
 public class CharController : MonoBehaviour
 {
-    private CharacterController controller;
-    private float verticalVelocity;
-    private bool isMoving = false;
+    Rigidbody rb;
+    [SerializeField] float movementForce;
+    [SerializeField] float maxVelocity = 10f;
+    [SerializeField] float gravityValue = -9.81f;
+    Vector3 moveDirection;
 
-    [SerializeField] private float playerSpeed = 5f;
-    [SerializeField] private float gravityValue = 9.81f;
-    [SerializeField] private float coyoteTime = 0.2f;
-    [SerializeField] private float jumpBufferingTime = 0.2f;
-    [SerializeField] private float audioInterval;
-    [SerializeField] private AudioClip stepClip;
-
-    private float coyoteTimeCounter;
-    private float jumpBufferingCounter;
-    private float timeSinceLastAudio;
-
-    void Start()
+    private void Awake()
     {
-        controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void Update()
     {
-        HandleAudio();
-        UpdateGroundStatus();
-        HandleCoyoteAndJumpBuffering();
-        ApplyGravity();
-        HandleMovementAndJumping();
+
     }
 
-    private void HandleAudio()
+    private void FixedUpdate()
     {
-        timeSinceLastAudio += Time.deltaTime;
-        if (timeSinceLastAudio >= audioInterval && isMoving)
+        rb.AddForce(new Vector3(0, gravityValue, 0) * 1);
+
+        if (rb != null && rb.velocity.magnitude >= maxVelocity)
         {
-            timeSinceLastAudio = 0;
-            SoundManagerSO.PlaySFXClip(stepClip, transform.position, 1f);
+            if (Input.GetKey(KeyCode.W)) { rb.AddForce(movementForce * Vector3.forward); }
+            if (Input.GetKey(KeyCode.S)) { rb.AddForce(movementForce * -Vector3.forward); }
+            if (Input.GetKey(KeyCode.D)) { rb.AddForce(movementForce * Vector3.right); }
+            if (Input.GetKey(KeyCode.A)) { rb.AddForce(movementForce * -Vector3.right); }
         }
-    }
-
-    private void UpdateGroundStatus()
-    {
-        if (controller.isGrounded)
-        {
-            if (verticalVelocity < 0)
-            {
-                verticalVelocity = -1f;
-            }
-            coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-    }
-
-    private void HandleCoyoteAndJumpBuffering()
-    {
-        if (Input.GetButtonDown("Jump"))
-        {
-            jumpBufferingCounter = jumpBufferingTime;
-        }
-        else
-        {
-            jumpBufferingCounter -= Time.deltaTime;
-        }
-    }
-
-    private void ApplyGravity()
-    {
-        verticalVelocity -= gravityValue * Time.deltaTime;
-    }
-
-    private void HandleMovementAndJumping()
-    {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
-        Vector3 move = new Vector3(horizontalInput, 0, verticalInput).normalized;
-
-        isMoving = move != Vector3.zero;
-
-        Vector3 moveDirection = transform.TransformDirection(move) * playerSpeed;
-
-        /*if (coyoteTimeCounter > 0 && Input.GetButtonDown("Jump"))
-        {
-            verticalVelocity = Mathf.Sqrt(jumpHeight * 2 * gravityValue);
-        }*/
-
-        moveDirection.y = verticalVelocity;
-        controller.Move(moveDirection * Time.deltaTime);
     }
 }
