@@ -1,32 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class PlayerManager : MonoBehaviour, IDamagable
+public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] float playerHealth;
-    public Slider healthBar;
-    public GameObject deathPanel;
-    public GameObject hud;
-    public Action DamageTaken;
-
-    public void TakeDamage(float damage)
-    {
-        playerHealth -= damage;
-        healthBar.value = playerHealth;
-
-        if (playerHealth <= 0)
-            Die();
-
-        DamageTaken?.Invoke();
+    private void OnEnable() {
+        EventManager.Instance.Subscribe(GameEvents.EventType.GameStart, EnablePlayer);
     }
 
-    private void Die()
-    {
-        deathPanel.SetActive(true);
-        hud.SetActive(false);
-        Time.timeScale = 0f;
+    private void OnDestroy() {
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.GameStart, EnablePlayer);
+    }
+
+    private void EnablePlayer() {
+        EventManager.Instance.Publish(GameEvents.EventType.PlayerEnabled);
+    }
+
+    private void DisablePlayer() {
+
     }
 }

@@ -4,10 +4,23 @@ public class CharRotation : MonoBehaviour
 {
     Vector3 mousePosition;
     public LayerMask mask;
+    private bool canRotate;
+
+
+    private void OnEnable() {
+        EventManager.Instance.Subscribe(GameEvents.EventType.PlayerEnabled, () => canRotate = true);
+        EventManager.Instance.Subscribe(GameEvents.EventType.PlayerDisabled, () => canRotate = false);
+    }
+
+    private void OnDestroy() {
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.PlayerEnabled, () => canRotate = true);
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.PlayerDisabled, () => canRotate = false);
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if (!canRotate) return;
         // Get the mouse position in screen space
         mousePosition = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);

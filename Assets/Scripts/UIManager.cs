@@ -1,17 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public void GunSelectionBtn()
-    {
-        SceneManager.LoadScene(1);
+    public GameObject uiCanvas;
+    public GameObject titleCanvas;
+
+    private void OnEnable() {
+        EventManager.Instance.Subscribe(GameEvents.EventType.GameStart, EnableUICanvas);
+        EventManager.Instance.Subscribe(GameEvents.EventType.GameStart, DisableTitleCanvas);
     }
 
-    public void StartGame()
-    {
-        SceneManager.LoadScene(2);
+    private void OnDestroy() {
+
+    }
+
+    private void EnableUICanvas() {
+        uiCanvas.SetActive(true);
+    }
+
+    private void DisableUICanvas() {
+        uiCanvas.SetActive(false);
+    }
+
+    private void EnableTitleCanvas() {
+        titleCanvas.SetActive(true);
+    }
+
+    private void DisableTitleCanvas() {
+        titleCanvas.SetActive(false);
     }
 }

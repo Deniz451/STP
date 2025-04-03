@@ -20,6 +20,21 @@ public class CharControllerNew : MonoBehaviour
 
     Vector3 currentMoveDirection;
     bool isDashing = false;
+    private bool canMove;
+    public GameObject dashClone;
+    public float cloneDistance;
+    private Vector3 lastClonePos;
+
+
+    private void OnEnable() {
+        EventManager.Instance.Subscribe(GameEvents.EventType.PlayerEnabled, () => canMove = true);
+        EventManager.Instance.Subscribe(GameEvents.EventType.PlayerDisabled, () => canMove = false);
+    }
+
+    private void OnDestroy() {
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.PlayerEnabled, () => canMove = true);
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.PlayerDisabled, () => canMove = false);
+    }
 
     void Start()
     {
@@ -31,6 +46,8 @@ public class CharControllerNew : MonoBehaviour
 
     void Update()
     {
+        if (!canMove) return;
+        
         if (!isDashing)
         {
             verticalVelocity -= gravityValue * Time.deltaTime;
@@ -44,6 +61,12 @@ public class CharControllerNew : MonoBehaviour
             moveDirection.y = verticalVelocity;
 
             controller.Move(moveDirection * Time.deltaTime);
+        }
+        else {
+            if (Vector3.Distance(transform.position, lastClonePos) >= cloneDistance) {
+                GameObject clone = Instantiate(dashClone, transform.position, transform.rotation);
+                Destroy(clone, 1f);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && currentDelay <= 0)
@@ -59,6 +82,7 @@ public class CharControllerNew : MonoBehaviour
 
     IEnumerator Dash(float duration, float force, Vector3 direction)
     {
+        lastClonePos = transform.position;
         controller.enabled = false;
         rb.isKinematic = false;
         rb.useGravity = false;  // Disable gravity

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950f6e0a019ab8f4ba74b1fbaa3f050f, type: 3}
   m_Name: SelectedWeaponsSO
   m_EditorClassIdentifier: 
-  gunL: {fileID: 11400000, guid: c0a612037237ddc4080d11e8c4195e38, type: 2}
-  gunR: {fileID: 11400000, guid: c0a612037237ddc4080d11e8c4195e38, type: 2}
+  gunL: {fileID: 11400000, guid: 6978befd0ef4cb748802a7ef546983d0, type: 2}
+  gunR: {fileID: 11400000, guid: 6978befd0ef4cb748802a7ef546983d0, type: 2}
