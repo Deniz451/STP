@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169018f16e288734fad81b824a499beb, type: 3}
+  m_Name: SpawnerSettings
+  m_EditorClassIdentifier: 
+  spawnMultiplier: 1
+  minSpawnDistance: 25
+  maxSpawnDistance: 35
+  spawnInterval: 2
+  spiderEnemy: {fileID: 8576281376484204628, guid: b2b206c308318b74a9fb8b1eaa49c64e, type: 3}
+  mosquitoEnemy: {fileID: 5632312519405540425, guid: 3f801b0c3f60c3a42b3f79988c6f66fe, type: 3}
+  woodlouseEnemy: {fileID: 6178316966672508253, guid: 04bdda4115ad74248bdf035169414a23, type: 3}

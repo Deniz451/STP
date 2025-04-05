@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Woodlouse
   m_EditorClassIdentifier: 
   health: 100
-  damage: 30
+  damage: 5
   attackDistance: 15
   attackDelay: 0.5
   attackCooldown: 2

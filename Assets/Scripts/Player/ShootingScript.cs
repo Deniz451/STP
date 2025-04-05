@@ -32,12 +32,6 @@ public class ShootingScript : MonoBehaviour
         EventManager.Instance.Unsubscribe(GameEvents.EventType.PlayerDisabled, () => canShoot = false);
     }
 
-    private void Start()
-    {
-        gunL = Instantiate(selectedWeaponsSO.gunL.gunPrefab, gunLHolder);
-        gunR = Instantiate(selectedWeaponsSO.gunR.gunPrefab, gunRHolder);
-    }
-
     void Update()
     {
         if (Input.GetMouseButton(0) && done && canShoot)

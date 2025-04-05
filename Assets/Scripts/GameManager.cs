@@ -2,16 +2,35 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private bool gameStarted = false;
+    public GameInfo gameInfo;
+    private bool _gameStarted = false;
+    private bool _gamePaused = false;
 
 
     private void Update() {
-        if (Input.anyKey && !gameStarted)
+        if (Input.anyKey && !_gameStarted)
             StartGame();
+
+        if (Input.GetKeyDown(KeyCode.Escape) && _gameStarted) {
+            if (_gamePaused) ResumeGame();
+            else PauseGame();
+            _gamePaused = !_gamePaused;
+        }
     }
 
     private void StartGame() {
-        gameStarted = true;
         EventManager.Instance.Publish(GameEvents.EventType.GameStart);
+        _gameStarted = true;
+        gameInfo.gameStarted = true;
+    }
+
+    private void PauseGame() {
+        EventManager.Instance.Publish(GameEvents.EventType.GamePause);
+        Time.timeScale = 0.0f;
+    }
+
+    private void ResumeGame() {
+        EventManager.Instance.Publish(GameEvents.EventType.GameResume);
+        Time.timeScale = 1.0f;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour, IDamagable
 {
     private EnemyReferences enemyReferences;
-    public Action OnDeath;
+    public event Action OnDeath;
     public float health; // After testing make var private
     private bool isDead = false;
 

@@ -11,7 +11,6 @@ public class CameraShake : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        //player.GetComponent<ShootingScript>().Shoot += ShootShake;
         player.GetComponent<PlayerHealth>().DamageTaken += DamageShake;
     }
 
