@@ -11,7 +11,8 @@ public class UIManager : MonoBehaviour
     public GameObject shopCanvas;
     public GameObject deathCanvas;
     public TextMeshProUGUI waveTxt;
-    public TextMeshProUGUI deathTxt;
+    public TextMeshProUGUI deathTxt1;
+    public TextMeshProUGUI deathTxt2;
 
     private void OnEnable() {
         EventManager.Instance.Subscribe(GameEvents.EventType.GameStart, EnableUICanvas);
@@ -86,17 +87,20 @@ public class UIManager : MonoBehaviour
     private void ShowDeathTextCaller() { StartCoroutine(ShowDeathText()); }
 
     private IEnumerator ShowDeathText() {
-        deathTxt.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, -1f);
+        deathTxt1.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, -1f);
+        deathTxt2.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, -1f);
         float elapseTime = 0;
         float duration = 1;
 
         while (elapseTime < duration) {
             float lerpValue = Mathf.Lerp(-1f, 0f, elapseTime / duration);
-            deathTxt.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, lerpValue);
+            deathTxt1.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, lerpValue);
+            deathTxt2.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, lerpValue);
             elapseTime += Time.deltaTime;
             yield return null;
         }
 
-        deathTxt.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, 0f);
+        deathTxt1.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, 0f);
+        deathTxt2.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, 0f);
     }
 }

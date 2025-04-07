@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,6 +7,13 @@ public class GameManager : MonoBehaviour
     private bool _gameStarted = false;
     private bool _gamePaused = false;
 
+    private void OnEnable() {
+        EventManager.Instance.Subscribe(GameEvents.EventType.GameReload, ReloadGame);         
+    }
+
+    private void OnDestroy() {
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.GameReload, ReloadGame);            
+    }
 
     private void Update() {
         if (Input.anyKey && !_gameStarted)
@@ -32,5 +40,9 @@ public class GameManager : MonoBehaviour
     private void ResumeGame() {
         EventManager.Instance.Publish(GameEvents.EventType.GameResume);
         Time.timeScale = 1.0f;
+    }
+
+    private void ReloadGame() {
+        SceneManager.LoadSceneAsync(0);
     }
 }

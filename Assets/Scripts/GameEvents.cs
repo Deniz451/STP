@@ -6,6 +6,7 @@ public static class GameEvents
         GameStart,
         GamePause,
         GameResume,
+        GameReload,
         WaveStart,
         WaveEnd,
         AllEnemiesKilled,
