@@ -9,6 +9,7 @@ public class BulletScript : MonoBehaviour
 
     Rigidbody rb;
     ParticleManager pm;
+    private float lifeTime;
 
     private void Start()
     {

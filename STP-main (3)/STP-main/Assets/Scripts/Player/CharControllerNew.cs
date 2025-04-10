@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CharControllerNew : MonoBehaviour
@@ -10,27 +8,42 @@ public class CharControllerNew : MonoBehaviour
     Rigidbody rb;
     float verticalVelocity;
 
-    [SerializeField] private float dashDelay = 3f;
-    [SerializeField] float playerSpeed = 5f;
-    [SerializeField] float pushForce = 8f;
-    [SerializeField] float dashDuration = 0.3f;
+    public float dashDelay;
+    public float playerSpeed = 5f;
+    public float pushForce = 8f;
+    public float dashDuration = 0.3f;
     public Slider dashBar;
-    float gravityValue = 9.81f;
-    float currentDelay = 0;
+    private float gravityValue = 9.81f;
+    private float currentDelay = 0;
+    private Vector3 currentMoveDirection;
+    private bool isDashing = false;
+    private bool canMove;
+    public GameObject dashClone;
+    public float cloneDistance;
+    private Vector3 lastClonePos;
 
-    Vector3 currentMoveDirection;
-    bool isDashing = false;
+    private void OnEnable() {
+        EventManager.Instance.Subscribe(GameEvents.EventType.PlayerEnabled, () => canMove = true);
+        EventManager.Instance.Subscribe(GameEvents.EventType.PlayerDisabled, () => canMove = false);
+    }
+
+    private void OnDestroy() {
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.PlayerEnabled, () => canMove = true);
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.PlayerDisabled, () => canMove = false);
+    }
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         controller.enabled = true;
         rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;  // Ensure Rigidbody doesn't interfere initially
+        rb.isKinematic = true;
     }
 
     void Update()
     {
+        if (!canMove) return;
+        
         if (!isDashing)
         {
             verticalVelocity -= gravityValue * Time.deltaTime;
@@ -45,6 +58,13 @@ public class CharControllerNew : MonoBehaviour
 
             controller.Move(moveDirection * Time.deltaTime);
         }
+        else {
+            if (Vector3.Distance(transform.position, lastClonePos) >= cloneDistance) {
+                lastClonePos = transform.position;
+                GameObject clone = Instantiate(dashClone, transform.position, transform.rotation);
+                Destroy(clone, 1f);
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && currentDelay <= 0)
         {
@@ -54,27 +74,29 @@ public class CharControllerNew : MonoBehaviour
         }
         currentDelay -= Time.deltaTime;
         dashBar.value = dashDelay - currentDelay;
-        //if (currentDelay <= 0) { Debug.Log("Dash Ready"); }
     }
 
     IEnumerator Dash(float duration, float force, Vector3 direction)
     {
+        EventManager.Instance.Publish(GameEvents.EventType.PlayerDashStart);
+        lastClonePos = transform.position;
         controller.enabled = false;
         rb.isKinematic = false;
-        rb.useGravity = false;  // Disable gravity
+        rb.useGravity = false;
 
-        rb.velocity = Vector3.zero;  // Reset velocity
-        rb.AddForce(direction * force, ForceMode.Impulse);  // Apply dash force
+        rb.velocity = Vector3.zero;
+        rb.AddForce(direction * force, ForceMode.Impulse);
 
         isDashing = true;
-        yield return new WaitForSeconds(duration);  // Wait for the duration of the dash
+        yield return new WaitForSeconds(duration);
 
-        rb.velocity = Vector3.zero;  // Reset velocity after dash
+        rb.velocity = Vector3.zero;
         rb.isKinematic = true;
         controller.enabled = true;
-        rb.useGravity = true;  // Re-enable gravity
+        rb.useGravity = true;
 
         isDashing = false;
+        EventManager.Instance.Publish(GameEvents.EventType.PlayerDashEnd);
     }
 }
 

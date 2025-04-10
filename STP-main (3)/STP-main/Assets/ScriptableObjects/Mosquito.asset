@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mosquito
   m_EditorClassIdentifier: 
   health: 100
-  damage: 20
+  damage: 3
   attackDistance: 8
   attackDelay: 1
   attackCooldown: 3

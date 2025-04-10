@@ -1,9 +1,9 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GunManager : MonoBehaviour
-{
+{/*
     [SerializeField] GameObject gunAnchor;
     public List<GunSO> guns;        //Musi byt v kazde scene s player kvuli tomuhle listu
 
@@ -75,6 +75,5 @@ public class GunManager : MonoBehaviour
     {
         PlayerPrefs.SetString("WeaponL", ss.currentGunL.name);
         PlayerPrefs.SetString("WeaponR", ss.currentGunR.name);          //musi se callnout pred menenim scen
-    }
+    }*/
 }
-*/

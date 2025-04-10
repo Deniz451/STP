@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShootingScript : MonoBehaviour
@@ -20,16 +19,22 @@ public class ShootingScript : MonoBehaviour
 
     private int index = 1;
     private bool done = true;
+    private bool canShoot;
 
-    private void Start()
-    {
-        gunL = Instantiate(selectedWeaponsSO.gunL.gunPrefab, gunLHolder);
-        gunR = Instantiate(selectedWeaponsSO.gunR.gunPrefab, gunRHolder);
+
+    private void OnEnable() {
+        EventManager.Instance.Subscribe(GameEvents.EventType.PlayerEnabled, () => canShoot = true);
+        EventManager.Instance.Subscribe(GameEvents.EventType.PlayerDisabled, () => canShoot = false);
+    }
+
+    private void OnDestroy() {
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.PlayerEnabled, () => canShoot = true);
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.PlayerDisabled, () => canShoot = false);
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && done)
+        if (Input.GetMouseButton(0) && done && canShoot)
         {
             switch (index)
             {
@@ -51,6 +56,7 @@ public class ShootingScript : MonoBehaviour
         SoundManagerSO.PlaySFXClip(gun.fire, transform.position, 0.5f);
 
         GameObject bullet = Instantiate(gun.projectilePrefab);
+
         bullet.transform.position = (index == 1) ? bulletSpawnR.position : bulletSpawnL.position;
 
         Vector3 shootDirection = headHolder.forward.normalized;

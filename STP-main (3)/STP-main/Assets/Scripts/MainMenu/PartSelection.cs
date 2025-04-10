@@ -37,9 +37,9 @@ public class PartSelection : MonoBehaviour
         var collider = gun.AddComponent<BoxCollider>();
         collider.enabled = false;
 
-        var part = gun.AddComponent<SelectablePart>();
+        var part = gun.AddComponent<ChangeablePart>();
         part.outliner = outlineMAT;
-        part.clicked += PreviewParts;
+        //part.clicked += PreviewParts;
 
         currentGun = gun;
     }
@@ -82,7 +82,7 @@ public class PartSelection : MonoBehaviour
         InstantiatePreviewGun(previewHolder, selectedGun == gun1 ? "Gun2" : "Gun1");
     }
 
-    private void PreviewParts(SelectablePart part)
+    private void PreviewParts(ChangeablePart part)
     {
         isPreviewing = true;
         hintTxt.SetActive(true);
