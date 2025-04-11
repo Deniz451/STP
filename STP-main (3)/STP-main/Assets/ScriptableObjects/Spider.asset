@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2363a27d924efc44f811bf1e4e511cdc, type: 3}
+  m_Name: Spider
+  m_EditorClassIdentifier: 
+  health: 100
+  damage: 2
+  attackDistance: 15
+  attackDelay: 0.5
+  attackCooldown: 5
+  projectilePrefab: {fileID: 3665345548286149822, guid: a0c80e561187ab148b77389452fead2f, type: 3}
+  dashAttackDuration: 0
+  dashAttackForce: 0
+  maxDashSpeed: 0
+  moveSpeed: 10
+  dissolveMaterial: {fileID: 2100000, guid: d81ba3a064c23ed41952f96f6732fa6f, type: 2}
+  dissolveDuration: 4
+  hit: {fileID: 8300000, guid: e7b04feda0d92b842b46c56c83a3ae7f, type: 3}

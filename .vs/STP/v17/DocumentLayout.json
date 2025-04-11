@@ -1,0 +1,230 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\assets\\scripts\\player\\charcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\charcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Library\\PackageCache\\com.unity.visualeffectgraph@14.0.11\\Editor\\Models\\VFXGraph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.visualeffectgraph@14.0.11\\Editor\\Models\\VFXGraph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\assets\\scripts\\managers\\gunmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\gunmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\assets\\scripts\\player\\shootingscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\shootingscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\assets\\scripts\\mainmenu\\startbtn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mainmenu\\startbtn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\assets\\scripts\\player\\bulletscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\bulletscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\assets\\scripts\\player\\charrotation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\charrotation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\assets\\scripts\\playerislandscripts\\interactivezone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playerislandscripts\\interactivezone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\assets\\scripts\\mainmenu\\playbtn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mainmenu\\playbtn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\assets\\scripts\\tools\\modelsetuptool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\tools\\modelsetuptool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\assets\\scripts\\managers\\particlemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\particlemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\assets\\scripts\\scriptableobjects\\gunso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E717EF35-96A0-365D-25AF-3EF53CCC8B9C}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scriptableobjects\\gunso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VFXGraph.cs",
+              "DocumentMoniker": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Library\\PackageCache\\com.unity.visualeffectgraph@14.0.11\\Editor\\Models\\VFXGraph.cs",
+              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.visualeffectgraph@14.0.11\\Editor\\Models\\VFXGraph.cs",
+              "ToolTip": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Library\\PackageCache\\com.unity.visualeffectgraph@14.0.11\\Editor\\Models\\VFXGraph.cs",
+              "RelativeToolTip": "Library\\PackageCache\\com.unity.visualeffectgraph@14.0.11\\Editor\\Models\\VFXGraph.cs",
+              "ViewState": "AgIAAGMBAAAAAAAAAAAswHEBAABmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T09:44:36.851Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ParticleManager.cs",
+              "DocumentMoniker": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\Managers\\ParticleManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\ParticleManager.cs",
+              "ToolTip": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\Managers\\ParticleManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Managers\\ParticleManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T22:07:19.621Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ModelSetupTool.cs",
+              "DocumentMoniker": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\Tools\\ModelSetupTool.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Tools\\ModelSetupTool.cs",
+              "ToolTip": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\Tools\\ModelSetupTool.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Tools\\ModelSetupTool.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T22:06:30.703Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UIManager.cs",
+              "DocumentMoniker": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\UIManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UIManager.cs",
+              "ToolTip": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\UIManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UIManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T20:54:09.575Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PlayBtn.cs",
+              "DocumentMoniker": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\MainMenu\\PlayBtn.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenu\\PlayBtn.cs",
+              "ToolTip": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\MainMenu\\PlayBtn.cs",
+              "RelativeToolTip": "Assets\\Scripts\\MainMenu\\PlayBtn.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T20:35:01.364Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CharController.cs",
+              "DocumentMoniker": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\Player\\CharController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\CharController.cs",
+              "ToolTip": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\Player\\CharController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\CharController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T05:00:58.62Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GunManager.cs",
+              "DocumentMoniker": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\Managers\\GunManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\GunManager.cs",
+              "ToolTip": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\Managers\\GunManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Managers\\GunManager.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAE4AAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T02:55:03.187Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StartBtn.cs",
+              "DocumentMoniker": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\MainMenu\\StartBtn.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenu\\StartBtn.cs",
+              "ToolTip": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\MainMenu\\StartBtn.cs",
+              "RelativeToolTip": "Assets\\Scripts\\MainMenu\\StartBtn.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-16T17:44:50.07Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ShootingScript.cs",
+              "DocumentMoniker": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\Player\\ShootingScript.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\ShootingScript.cs",
+              "ToolTip": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\Player\\ShootingScript.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\ShootingScript.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-20T12:24:33.821Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "InteractiveZone.cs",
+              "DocumentMoniker": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\PlayerIslandScripts\\InteractiveZone.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerIslandScripts\\InteractiveZone.cs",
+              "ToolTip": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\PlayerIslandScripts\\InteractiveZone.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlayerIslandScripts\\InteractiveZone.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAABBwEoAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T10:43:19.964Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "GunSO.cs",
+              "DocumentMoniker": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\ScriptableObjects\\GunSO.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ScriptableObjects\\GunSO.cs",
+              "ToolTip": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\ScriptableObjects\\GunSO.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ScriptableObjects\\GunSO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T01:28:30.679Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CharRotation.cs",
+              "DocumentMoniker": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\Player\\CharRotation.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\CharRotation.cs",
+              "ToolTip": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\Player\\CharRotation.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\CharRotation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-20T12:21:38.935Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BulletScript.cs",
+              "DocumentMoniker": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\Player\\BulletScript.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\BulletScript.cs",
+              "ToolTip": "C:\\Users\\matya\\OneDrive\\Documents\\GitHub\\STP\\Assets\\Scripts\\Player\\BulletScript.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\BulletScript.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAABuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T09:31:57.889Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
