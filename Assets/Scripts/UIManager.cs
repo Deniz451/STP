@@ -96,7 +96,7 @@ public class UIManager : MonoBehaviour
             float lerpValue = Mathf.Lerp(-1f, 0f, elapseTime / duration);
             deathTxt1.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, lerpValue);
             deathTxt2.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, lerpValue);
-            elapseTime += Time.deltaTime;
+            elapseTime += Time.unscaledDeltaTime;
             yield return null;
         }
 

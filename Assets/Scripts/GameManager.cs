@@ -8,11 +8,17 @@ public class GameManager : MonoBehaviour
     private bool _gamePaused = false;
 
     private void OnEnable() {
-        EventManager.Instance.Subscribe(GameEvents.EventType.GameReload, ReloadGame);         
+        EventManager.Instance.Subscribe(GameEvents.EventType.GameReload, ReloadGame);
+        EventManager.Instance.Subscribe(GameEvents.EventType.ResumeBtnClick, ResumeGame);
+        EventManager.Instance.Subscribe(GameEvents.EventType.ExitBtnClick, ReloadGame);  
+        EventManager.Instance.Subscribe(GameEvents.EventType.PlayerDeath, PauseGame);                                    
     }
 
     private void OnDestroy() {
-        EventManager.Instance.Unsubscribe(GameEvents.EventType.GameReload, ReloadGame);            
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.GameReload, ReloadGame);        
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.ResumeBtnClick, ResumeGame);    
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.ExitBtnClick, ReloadGame);     
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.PlayerDeath, PauseGame);  
     }
 
     private void Update() {
@@ -20,9 +26,7 @@ public class GameManager : MonoBehaviour
             StartGame();
 
         if (Input.GetKeyDown(KeyCode.Escape) && _gameStarted) {
-            if (_gamePaused) ResumeGame();
-            else PauseGame();
-            _gamePaused = !_gamePaused;
+            if (!_gamePaused) PauseGame();
         }
     }
 
@@ -35,11 +39,13 @@ public class GameManager : MonoBehaviour
     private void PauseGame() {
         EventManager.Instance.Publish(GameEvents.EventType.GamePause);
         Time.timeScale = 0.0f;
+        _gamePaused = true;
     }
 
     private void ResumeGame() {
         EventManager.Instance.Publish(GameEvents.EventType.GameResume);
         Time.timeScale = 1.0f;
+        _gamePaused = false;
     }
 
     private void ReloadGame() {

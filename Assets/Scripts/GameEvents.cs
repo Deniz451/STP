@@ -20,5 +20,8 @@ public static class GameEvents
         ShopOpen,
         ShopClose,
         ShopContinueBtnClick,
+        /*---PAUSE MENU EVENTS---*/
+        ResumeBtnClick,
+        ExitBtnClick,
     }
 }

@@ -12,29 +12,28 @@ public class PauseMenu : MonoBehaviour
             if (_index != value)
             {
                 _index = value;
+                _index = Mathf.Clamp(_index, 0, texts.Length - 1);
                 EnableText(_index);
             }
         }
     }
 
     private void Start() {
-        Index = 0;
         EnableText(Index);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow)) {
-            if (Index-- < 0) 
-                Index = texts.Length - 1;
-            else
-                Index--;
+            Index = (Index - 1 + texts.Length) % texts.Length;
         }
         if (Input.GetKeyDown(KeyCode.DownArrow)) {
-            if (Index++ > texts.Length - 1)
-                Index = 0;
-            else
-                Index++;
+            Index = (Index + 1) % texts.Length;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            if (Index == 0) EventManager.Instance.Publish(GameEvents.EventType.ResumeBtnClick);
+            else if (Index == 1) EventManager.Instance.Publish(GameEvents.EventType.ExitBtnClick);
         }
     }
 
@@ -43,6 +42,5 @@ public class PauseMenu : MonoBehaviour
             text.Blink = false;
 
         texts[index].Blink = true;
-        Debug.Log("Enabled text with index of: " + index);
     }
 }
