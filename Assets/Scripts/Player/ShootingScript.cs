@@ -9,11 +9,11 @@ public class ShootingScript : MonoBehaviour
     public Transform bulletSpawnL;
     public Transform bulletSpawnR;
 
-    public GameObject gunR;
-    public GameObject gunL;
-
     public Transform headHolder;
-    public SelectedWeaponsSO selectedWeaponsSO;
+    private GunSO gunL;
+    private GunSO gunR;
+    private GameObject gunLPrefab;
+    private GameObject gunRPrefab;
 
     public Action Shoot;
 
@@ -32,6 +32,11 @@ public class ShootingScript : MonoBehaviour
         EventManager.Instance.Unsubscribe(GameEvents.EventType.PlayerDisabled, () => canShoot = false);
     }
 
+    private void Start() {
+        var playerManager = GetComponent<PlayerManager>();
+        playerManager.switchWeapons += SwitchWeapons;
+    }
+
     void Update()
     {
         if (Input.GetMouseButton(0) && done && canShoot)
@@ -39,21 +44,21 @@ public class ShootingScript : MonoBehaviour
             switch (index)
             {
                 case 1:
-                    StartCoroutine(ShootBullet(selectedWeaponsSO.gunR, gunR));
+                    StartCoroutine(ShootBullet(gunR));
                     break;
                 case 2:
-                    StartCoroutine(ShootBullet(selectedWeaponsSO.gunL, gunL));
+                    StartCoroutine(ShootBullet(gunL));
                     break;
             }
         }
     }
 
-    IEnumerator ShootBullet(GunSO gun, GameObject gunInstance)
+    IEnumerator ShootBullet(GunSO gun)
     {
         done = false;
 
         Shoot?.Invoke();
-        SoundManagerSO.PlaySFXClip(gun.fire, transform.position, 0.5f);
+        SoundManagerSO.PlaySFXClip(gun.fireClip, transform.position, 0.5f);
 
         GameObject bullet = Instantiate(gun.projectilePrefab);
 
@@ -78,5 +83,25 @@ public class ShootingScript : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         Destroy(bullet);
+    }
+
+    private void SwitchWeapons(GunSO gunL, GunSO gunR) {
+        this.gunL = gunL;
+        this.gunR = gunR;
+
+        if (gunLPrefab != null) Destroy(gunLPrefab);
+        if (gunRPrefab != null) Destroy(gunRPrefab);
+        
+        gunLPrefab = Instantiate(gunL.prefab, gunLHolder.position, gunL.prefab.transform.rotation);
+        gunLPrefab.transform.SetParent(gunLHolder.transform, true);
+        gunLPrefab.transform.rotation = gunL.prefab.transform.rotation;
+        gunLPrefab.transform.localScale = gunL.prefab.transform.localScale;
+        gunLPrefab.GetComponent<ChangeablePart>().canSelect = true;
+
+        gunRPrefab = Instantiate(gunR.prefab, gunRHolder.position, gunR.prefab.transform.rotation);
+        gunRPrefab.transform.SetParent(gunRHolder.transform, true);
+        gunRPrefab.transform.rotation = gunR.prefab.transform.rotation;
+        gunRPrefab.transform.localScale = gunR.prefab.transform.localScale;
+        gunRPrefab.GetComponent<ChangeablePart>().canSelect = true;
     }
 }

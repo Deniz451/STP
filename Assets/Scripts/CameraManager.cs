@@ -87,7 +87,7 @@ public class CameraManager : MonoBehaviour
         targetedRot = shopGunLPos.rotation;
         lerpDuration = shopToParts;
         startSize = _camera.orthographicSize;
-        targetedSize = 0.8f;
+        targetedSize = 1f;
         lerpTimer = 0;
         isLerping = true;
     }
@@ -99,7 +99,7 @@ public class CameraManager : MonoBehaviour
         targetedRot = shopGunRPos.rotation;
         lerpDuration = shopToParts;
         startSize = _camera.orthographicSize;
-        targetedSize = 0.8f;
+        targetedSize = 1f;
         lerpTimer = 0;
         isLerping = true;
     }

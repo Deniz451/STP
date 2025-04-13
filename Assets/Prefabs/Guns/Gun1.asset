@@ -12,14 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344bb5f51b8a10e42aa63c9352a87ff3, type: 3}
   m_Name: Gun1
   m_EditorClassIdentifier: 
-  gunName: Gun1
   damage: 10
   bulletLifetime: 6
   attackDelay: 0.8
   bulletSpeed: 20
   projectilePrefab: {fileID: 5709634828161644703, guid: 17978647575992a44b7ec0016503e4fa, type: 3}
-  moveModifier: 1
-  gunIcon: {fileID: 0}
-  gunPrefab: {fileID: 7436629818804917466, guid: a1c7c00e864c1b543aa23692bd6dda50, type: 3}
-  gunRotation: {x: -0.7069834, y: 0, z: 0, w: 0.70723015}
-  fire: {fileID: 8300000, guid: 5a22d102812d8fa469cca65418c67839, type: 3}
+  model: {fileID: 5360140890807050445, guid: a1c7c00e864c1b543aa23692bd6dda50, type: 3}
+  prefab: {fileID: 5360140890807050445, guid: a1c7c00e864c1b543aa23692bd6dda50, type: 3}
+  fireClip: {fileID: 8300000, guid: 5a22d102812d8fa469cca65418c67839, type: 3}

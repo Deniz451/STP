@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4a668bc767c044bbfbaae3b22e9dc6, type: 3}
   m_Name: Weapon1
   m_EditorClassIdentifier: 
-  index: 0
+  weaponInfo: {fileID: 11400000, guid: 6978befd0ef4cb748802a7ef546983d0, type: 2}
   price: 0
-  model: {fileID: 0}
+  unlocked: 1
