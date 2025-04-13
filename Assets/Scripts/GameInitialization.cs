@@ -8,12 +8,12 @@ public class GameInitialization : MonoBehaviour
 
     private void Awake()
     {
-        foreach (GameEvents.EventType eventType in Enum.GetValues(typeof(EventType))) {
+        foreach (GameEvents.EventType eventType in Enum.GetValues(typeof(GameEvents.EventType))) {
             EventManager.Instance.RegisterEvent(eventType);
         }
 
         Cursor.SetCursor(cursorTEX, Vector2.zero, CursorMode.Auto);
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
     }
 }

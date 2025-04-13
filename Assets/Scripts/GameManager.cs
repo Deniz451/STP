@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         EventManager.Instance.Publish(GameEvents.EventType.GameResume);
         Time.timeScale = 1.0f;
         _gamePaused = false;
-    }
+     }
 
     private void ReloadGame() {
         SceneManager.LoadSceneAsync(0);

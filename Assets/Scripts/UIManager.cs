@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI waveTxt;
     public TextMeshProUGUI deathTxt1;
     public TextMeshProUGUI deathTxt2;
+    public GameObject shopContinueText;
+    public GameObject shopBackText;
 
     private void OnEnable() {
         EventManager.Instance.Subscribe(GameEvents.EventType.GameStart, EnableUICanvas);
@@ -29,6 +31,8 @@ public class UIManager : MonoBehaviour
         EventManager.Instance.Subscribe(GameEvents.EventType.PlayerDeath, EnableDeathCanvas);
         EventManager.Instance.Subscribe(GameEvents.EventType.PlayerDeath, DisableUICanvas);
         EventManager.Instance.Subscribe(GameEvents.EventType.PlayerDeath, ShowDeathTextCaller);
+        EventManager.Instance.Subscribe(GameEvents.EventType.ClickedChangeablePart, ChangeShopTextToZoomed);
+        EventManager.Instance.Subscribe(GameEvents.EventType.ShopRightClicked, ChangeShopTextToDefault);
     }
 
     private void OnDestroy() {
@@ -45,6 +49,18 @@ public class UIManager : MonoBehaviour
         EventManager.Instance.Unsubscribe(GameEvents.EventType.ShopClose, EnableUICanvas);
         EventManager.Instance.Unsubscribe(GameEvents.EventType.PlayerDeath, DisableUICanvas);
         EventManager.Instance.Unsubscribe(GameEvents.EventType.PlayerDeath, ShowDeathTextCaller);
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.ClickedChangeablePart, ChangeShopTextToZoomed);
+        EventManager.Instance.Unsubscribe(GameEvents.EventType.ShopRightClicked, ChangeShopTextToDefault);
+    }
+
+    private void ChangeShopTextToDefault() {
+        shopContinueText.SetActive(true);
+        shopBackText.SetActive(false);
+    }
+
+    private void ChangeShopTextToZoomed() {
+        shopBackText.SetActive(true);
+        shopContinueText.SetActive(false);
     }
 
     private void EnableUICanvas() {

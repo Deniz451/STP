@@ -38,7 +38,7 @@ public class BulletScript : MonoBehaviour
 
 
         }
-        else if (!other.CompareTag("Player") && !other.CompareTag("Ground"))
+        else if (!other.CompareTag("Player") && !other.CompareTag("Ground") && !other.CompareTag("Weapon"))
         {
             Destroy(gameObject);
         }

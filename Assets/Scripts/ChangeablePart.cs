@@ -7,6 +7,7 @@ public class ChangeablePart : MonoBehaviour
     private MeshRenderer _meshRenderer;
     private Material[] _originalMaterials;
     public bool canSelect = false;
+    public Action OnClick;
 
     private void OnEnable() {
         EventManager.Instance.Subscribe(GameEvents.EventType.ShopOpen, () => canSelect = true);
@@ -23,12 +24,11 @@ public class ChangeablePart : MonoBehaviour
         _originalMaterials = _meshRenderer.materials;
     }
 
-    private void OnMouseDown() {
- 
+    public void OnMouseDown() {
+        OnClick?.Invoke();
     }
 
     private void OnMouseEnter() {
-        Debug.Log("Enter");
         if (!canSelect) return;
 
         Material[] newMaterials = _meshRenderer.materials;
