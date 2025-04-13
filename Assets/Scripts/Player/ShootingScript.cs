@@ -21,6 +21,7 @@ public class ShootingScript : MonoBehaviour
     private bool doneLeft = true;
     private bool doneRight = true;
     private bool canShoot;
+    private bool alternating;
 
 
     private void OnEnable() {
@@ -41,23 +42,34 @@ public class ShootingScript : MonoBehaviour
     void Update()
     {
         if (!canShoot) return;
+
+        alternating = gunL != null && gunR != null && gunL.name == gunR.name;
+
         if (Input.GetMouseButton(0))
         {
-            if (doneLeft) StartCoroutine(ShootBullet(gunR, doneRight));
-            else if (doneRight) StartCoroutine(ShootBullet(gunL, doneLeft));
+            if (alternating)
+            {
+                if (index == 1 && doneRight) StartCoroutine(ShootBullet(gunR, false));
+                else if (index == 2 && doneLeft) StartCoroutine(ShootBullet(gunL, true));
+            }
+            else
+            {
+                if (doneRight) StartCoroutine(ShootBullet(gunR, false));
+                if (doneLeft) StartCoroutine(ShootBullet(gunL, true));
+            }
         }
     }
 
-    IEnumerator ShootBullet(GunSO gun, bool marker)
+    IEnumerator ShootBullet(GunSO gun, bool isLeft)
     {
-        marker = false;
+        if (isLeft) doneLeft = false;
+        else doneRight = false;
 
         Shoot?.Invoke();
         SoundManagerSO.PlaySFXClip(gun.fireClip, transform.position, 0.5f);
 
         GameObject bullet = Instantiate(gun.projectilePrefab);
-
-        bullet.transform.position = (index == 1) ? bulletSpawnR.position : bulletSpawnL.position;
+        bullet.transform.position = isLeft ? bulletSpawnL.position : bulletSpawnR.position;
 
         Vector3 shootDirection = headHolder.forward.normalized;
         bullet.transform.rotation = Quaternion.LookRotation(Vector3.down, shootDirection);
@@ -67,11 +79,13 @@ public class ShootingScript : MonoBehaviour
 
         StartCoroutine(DespawnBullet(bullet, gun.bulletLifetime));
 
-        index = (index == 2) ? 1 : 2;
+        if (alternating)
+            index = (index == 1) ? 2 : 1;
 
         yield return new WaitForSeconds(gun.attackDelay);
 
-        marker = true;
+        if (isLeft) doneLeft = true;
+        else doneRight = true;
     }
 
     IEnumerator DespawnBullet(GameObject bullet, float time)
@@ -90,12 +104,16 @@ public class ShootingScript : MonoBehaviour
         gunLPrefab = Instantiate(gunL.prefab, gunLHolder.position, gunL.prefab.transform.rotation);
         gunLPrefab.transform.SetParent(gunLHolder.transform, true);
         gunLPrefab.transform.rotation = new(0, 0, 0, 0);
+        //gunLPrefab.transform.position = gunL.prefab.transform.localPosition;
+        //gunLPrefab.transform.rotation = gunL.prefab.transform.localRotation;
         gunLPrefab.transform.localScale = gunL.prefab.transform.localScale;
         gunLPrefab.GetComponent<ChangeablePart>().canSelect = true;
 
         gunRPrefab = Instantiate(gunR.prefab, gunRHolder.position, gunR.prefab.transform.rotation);
         gunRPrefab.transform.SetParent(gunRHolder.transform, true);
         gunRPrefab.transform.rotation = new(0, 0, 0, 0);
+        ///gunRPrefab.transform.position = gunR.prefab.transform.localPosition;
+        //gunRPrefab.transform.rotation = gunR.prefab.transform.localRotation;
         gunRPrefab.transform.localScale = gunR.prefab.transform.localScale;
         gunRPrefab.GetComponent<ChangeablePart>().canSelect = true;
     }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Weapon3
   m_EditorClassIdentifier: 
   weaponInfo: {fileID: 11400000, guid: 61360cf120940954493ed4091e5d17c9, type: 2}
-  price: 500
+  price: 150
   unlocked: 0

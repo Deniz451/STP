@@ -24,7 +24,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private int _currenctyAmount = 999;
+    private int _currenctyAmount = 0;
     public int CurrenctyAmount {
         get => _currenctyAmount;
         set {

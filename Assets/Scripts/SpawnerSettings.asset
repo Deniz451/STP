@@ -16,6 +16,9 @@ MonoBehaviour:
   minSpawnDistance: 25
   maxSpawnDistance: 35
   spawnInterval: 2
-  spiderEnemy: {fileID: 8576281376484204628, guid: b2b206c308318b74a9fb8b1eaa49c64e, type: 3}
-  mosquitoEnemy: {fileID: 5632312519405540425, guid: 3f801b0c3f60c3a42b3f79988c6f66fe, type: 3}
-  woodlouseEnemy: {fileID: 6178316966672508253, guid: 04bdda4115ad74248bdf035169414a23, type: 3}
+  enemy1: {fileID: 8576281376484204628, guid: b2b206c308318b74a9fb8b1eaa49c64e, type: 3}
+  enemy2: {fileID: 5632312519405540425, guid: 3f801b0c3f60c3a42b3f79988c6f66fe, type: 3}
+  enemy3: {fileID: 6178316966672508253, guid: 04bdda4115ad74248bdf035169414a23, type: 3}
+  enemy4: {fileID: 0}
+  enemy5: {fileID: 0}
+  enemy6: {fileID: 0}

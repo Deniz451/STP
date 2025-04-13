@@ -46,6 +46,8 @@ public class EnemyHealth : MonoBehaviour, IDamagable
 
         yield return new WaitForSeconds(enemyReferences.enemySO.dissolveDuration);
 
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>().CurrenctyAmount += enemyReferences.enemySO.currency;
+
         Destroy(gameObject);
     }
 

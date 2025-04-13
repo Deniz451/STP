@@ -25,3 +25,4 @@ MonoBehaviour:
   dissolveMaterial: {fileID: 2100000, guid: d81ba3a064c23ed41952f96f6732fa6f, type: 2}
   dissolveDuration: 4
   hit: {fileID: 8300000, guid: e7b04feda0d92b842b46c56c83a3ae7f, type: 3}
+  currency: 10

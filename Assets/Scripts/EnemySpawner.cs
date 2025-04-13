@@ -25,16 +25,31 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemiesCaller() { StartCoroutine(SpawnEnemies()); }
 
-    private IEnumerator SpawnEnemies() {
-        allEnemiesSpawned = false;
-        for (int i = 0; i < gameInfo.waveCount * settings.spawnMultiplier; i++) {
-           yield return new WaitForSeconds(settings.spawnInterval);
-           GameObject enemy = Instantiate(settings.spiderEnemy, GetSpawnPos(), Quaternion.identity);
-           enemy.GetComponent<IDamagable>().OnDeath += CheckForEnemiesKilled;
-           _enemySpawned++;
-        }
-        allEnemiesSpawned = true;
+private IEnumerator SpawnEnemies() {
+    allEnemiesSpawned = false;
+    _enemySpawned = 0;
+    _enemyKilled = 0;
+
+    GameObject[] allEnemies = new GameObject[] {
+        settings.enemy1,
+        settings.enemy2,
+        settings.enemy3,
+    };
+
+    int enemiesToSpawn = Mathf.FloorToInt(gameInfo.waveCount * settings.spawnMultiplier);
+
+    for (int i = 0; i < enemiesToSpawn; i++) {
+        yield return new WaitForSeconds(settings.spawnInterval);
+
+        GameObject randomEnemy = allEnemies[Random.Range(0, allEnemies.Length)];
+        GameObject enemy = Instantiate(randomEnemy, GetSpawnPos(), Quaternion.identity);
+
+        enemy.GetComponent<IDamagable>().OnDeath += CheckForEnemiesKilled;
+        _enemySpawned++;
     }
+
+    allEnemiesSpawned = true;
+}
 
     private void CheckForEnemiesKilled() {
         _enemyKilled++;

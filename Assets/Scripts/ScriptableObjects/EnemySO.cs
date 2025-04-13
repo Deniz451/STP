@@ -37,6 +37,8 @@ public class EnemySO : ScriptableObject
     [Header("Audio")]
     public AudioClip hit;
 
+    public int currency;
+
     /*[Space(30)]
     [Header("Animator")]
     public AnimatorController animatorController;*/
