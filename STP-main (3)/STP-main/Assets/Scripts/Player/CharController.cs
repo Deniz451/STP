@@ -2,94 +2,85 @@ using UnityEngine;
 
 public class CharController : MonoBehaviour
 {
-    private CharacterController controller;
-    private float verticalVelocity;
-    private bool isMoving = false;
+    Rigidbody rb;
 
-    [SerializeField] private float playerSpeed = 5f;
-    [SerializeField] private float gravityValue = 9.81f;
-    [SerializeField] private float coyoteTime = 0.2f;
-    [SerializeField] private float jumpBufferingTime = 0.2f;
-    [SerializeField] private float audioInterval;
-    [SerializeField] private AudioClip stepClip;
+    [SerializeField] float moveSpeed = 10f;
+    [SerializeField] float maxSpeed = 25f;
+    [SerializeField] float dashForce = 10f;
 
-    private float coyoteTimeCounter;
-    private float jumpBufferingCounter;
-    private float timeSinceLastAudio;
+    bool isDashing = false;
+    Vector3 dashDirection;
 
-    void Start()
+    private void Awake()
     {
-        controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void Update()
     {
-        HandleAudio();
-        UpdateGroundStatus();
-        HandleCoyoteAndJumpBuffering();
-        ApplyGravity();
-        HandleMovementAndJumping();
-    }
-
-    private void HandleAudio()
-    {
-        timeSinceLastAudio += Time.deltaTime;
-        if (timeSinceLastAudio >= audioInterval && isMoving)
+        
+        if (Input.GetKeyDown(KeyCode.Space) && isDashing == false && rb != null)
         {
-            timeSinceLastAudio = 0;
-            SoundManagerSO.PlaySFXClip(stepClip, transform.position, 1f);
+            isDashing = !isDashing;
+            dashDirection = rb.velocity;
         }
     }
 
-    private void UpdateGroundStatus()
+    private void FixedUpdate()
     {
-        if (controller.isGrounded)
+        if (rb != null)
         {
-            if (verticalVelocity < 0)
+            Vector3 moveDirection = Vector3.zero;
+            if (Input.GetKey(KeyCode.W) && rb.velocity.magnitude < maxSpeed)
             {
-                verticalVelocity = -1f;
+                moveDirection += Vector3.forward;
             }
-            coyoteTimeCounter = coyoteTime;
+            if (Input.GetKey(KeyCode.S) && rb.velocity.magnitude < maxSpeed)
+            {
+                moveDirection += Vector3.back;
+            }
+            if (Input.GetKey(KeyCode.A) && rb.velocity.magnitude < maxSpeed)
+            {
+                moveDirection += Vector3.left;
+            }
+            if (Input.GetKey(KeyCode.D) && rb.velocity.magnitude < maxSpeed)
+            {
+                moveDirection += Vector3.right;
+            }
+
+            moveDirection = moveDirection.normalized;
+            rb.velocity = Vector3.zero;
+            rb.AddForce(moveDirection * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
+
+            if(moveDirection!= Vector3.zero)
+            {
+                dashDirection = moveDirection;
+            }
+
+            if (isDashing)
+            {
+                /*if(dashDirection.x >= 1) { dashDirection.x = 1; }
+                else if(dashDirection.x <= -1) {  dashDirection.x = -1; }
+                else {  dashDirection.x = 0; }
+
+                if (dashDirection.z >= 1) { dashDirection.z = 1; }
+                else if (dashDirection.z <= -1) { dashDirection.z = -1; }
+                else { dashDirection.z = 0; }*/
+
+                dashDirection.y = 0;
+
+                if (moveDirection == Vector3.zero)
+                {
+                    moveDirection = dashDirection;
+                }
+
+                rb.AddForce(moveDirection.normalized * dashForce * Time.deltaTime, ForceMode.Impulse);
+
+                Debug.Log("Dashed by: "+ moveDirection * dashForce * Time.deltaTime);
+
+                isDashing = false;
+            }
         }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-    }
-
-    private void HandleCoyoteAndJumpBuffering()
-    {
-        if (Input.GetButtonDown("Jump"))
-        {
-            jumpBufferingCounter = jumpBufferingTime;
-        }
-        else
-        {
-            jumpBufferingCounter -= Time.deltaTime;
-        }
-    }
-
-    private void ApplyGravity()
-    {
-        verticalVelocity -= gravityValue * Time.deltaTime;
-    }
-
-    private void HandleMovementAndJumping()
-    {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
-        Vector3 move = new Vector3(horizontalInput, 0, verticalInput).normalized;
-
-        isMoving = move != Vector3.zero;
-
-        Vector3 moveDirection = transform.TransformDirection(move) * playerSpeed;
-
-        /*if (coyoteTimeCounter > 0 && Input.GetButtonDown("Jump"))
-        {
-            verticalVelocity = Mathf.Sqrt(jumpHeight * 2 * gravityValue);
-        }*/
-
-        moveDirection.y = verticalVelocity;
-        controller.Move(moveDirection * Time.deltaTime);
+        else { Debug.Log("Wtf kde RB?!?"); }
     }
 }
